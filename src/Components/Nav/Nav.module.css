@@ -1,0 +1,14 @@
+.nav {
+    grid-area: n;
+    background-color: rgb(124, 240, 248);
+  }
+
+.item {
+  padding: 20px;
+  color:darkblue;
+  cursor: pointer;
+}
+
+.active {
+  color: rgb(248, 0, 0)
+}

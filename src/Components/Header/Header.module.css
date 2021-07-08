@@ -1,0 +1,14 @@
+.header {
+    grid-area: h;
+    background-color:cadetblue
+}
+
+.header__img {
+    height: 100px;
+}
+
+.logo {
+    width: 300px;
+    height: 100px;
+    background-color: rgb(40, 108, 235);
+}
