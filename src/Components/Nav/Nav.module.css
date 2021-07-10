@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.item a {
+  text-decoration: none;
+}
+
 .active {
   color: rgb(248, 0, 0)
 }

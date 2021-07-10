@@ -1,0 +1,7 @@
+.userDialog a {
+    text-decoration: none;
+}
+
+.activeDialog {
+    color:red
+}

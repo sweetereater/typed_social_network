@@ -1,0 +1,30 @@
+.profile_info {
+    padding: 1px;
+    min-height: 150px;
+}
+.img_container {
+    height: 100px;
+    width: 100px;
+    background-color: khaki;
+    border-radius: 50%;
+    padding: 20px;
+    margin: 10px;
+    float: left;
+}
+
+.img_container__img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+/* .profile_info::after {
+    content: "";
+    clear: both;
+    display: table;
+} */
+
+.desc {
+    float: left;
+    margin-left: 20px;
+    color: white;
+}
