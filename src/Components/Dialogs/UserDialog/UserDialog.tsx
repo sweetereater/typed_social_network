@@ -8,7 +8,7 @@ type UserDialogType = {
     changeActiveDialog: (text: string) => void
 }
 
-const UserDialog = (props: UserDialogType) => {
+const UserDialog: React.FC<UserDialogType> = (props) => {
 
     const handleClick = () => {
         props.changeActiveDialog(props.name);

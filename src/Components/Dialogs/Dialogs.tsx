@@ -8,7 +8,7 @@ type DialogsPropsType = {
     changeActiveDialog: (text: string) => void
 }
 
-const Dialogs = (props: DialogsPropsType) => {
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const dialogsView = props.dialogsPage.dialogsData.map(dialog => {
         return <UserDialog

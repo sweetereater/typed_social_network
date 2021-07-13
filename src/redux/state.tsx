@@ -1,3 +1,4 @@
+import React from 'react';
 import { stateType } from './stateTypes';
 
 let rerenderEntireTree = (state: stateType) => {

@@ -12,7 +12,7 @@ type MyPostsPropsType = {
     onNewPostTextChange: (text: string) => void
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     const postView = props.posts.map(post => {
         return <Post

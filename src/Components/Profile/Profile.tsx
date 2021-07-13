@@ -10,7 +10,7 @@ type ProfilePropsType = {
     handlePostChange: (text: string) => void
 }
 
-const Profile = (props: ProfilePropsType) => {
+const Profile: React.FC<ProfilePropsType> = (props) => {
 
     return (
         <main className={s.main}>
