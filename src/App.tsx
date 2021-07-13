@@ -29,8 +29,8 @@ function App(props: AppStatePropsType) {
           </Route>
           <Route path='/messages'>
             <Dialogs
-              dialogsData={props.state.dialogsPage.dialogsData}
-              messages={props.state.dialogsPage.messages}
+              dialogsPage={props.state.dialogsPage}
+              changeActiveDialog={props.changeActiveDialog}
             />
           </Route>
         </Switch>

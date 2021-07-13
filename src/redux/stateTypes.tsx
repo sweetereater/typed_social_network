@@ -6,7 +6,8 @@ export type dialogType = {
 }
 
 export type messageType = {
-    id: number,
+    id: number
+    author: string
     text: string
 }
 
@@ -17,7 +18,8 @@ export type postType = {
     imgSrc: string
 }
 
-type dialogsPagePropsType = {
+export type dialogsPagePropsType = {
+    activeDialog: dialogType
     dialogsData: Array<dialogType>
     messages: Array<messageType>
 }
@@ -35,6 +37,7 @@ type AppStatePropsType = {
     state: stateType
     addPost: (text: string) => void
     onPostTextChange: (text: string) => void
+    changeActiveDialog: (text: string) => void
 }
 
 export default AppStatePropsType;

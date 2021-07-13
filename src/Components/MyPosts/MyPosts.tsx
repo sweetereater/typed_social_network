@@ -2,7 +2,6 @@ import React, { ChangeEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import { postType } from '../../redux/stateTypes'
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 import { Button, Input } from '@material-ui/core';
 
 
@@ -14,8 +13,6 @@ type MyPostsPropsType = {
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-
-    let textField = React.createRef();
 
     const postView = props.posts.map(post => {
         return <Post

@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import { stateType } from './stateTypes';
 
 let rerenderEntireTree = (state: stateType) => {
@@ -43,6 +42,10 @@ const data = {
         newPostText: "it-kamasutra :)"
     },
     dialogsPage: {
+        activeDialog: {
+            id: 1,
+            name: "Nadya"
+        },
         dialogsData: [
             { id: 1, name: "Nadya" },
             { id: 2, name: "Oleg" },
@@ -51,11 +54,14 @@ const data = {
             { id: 5, name: "Ilya" },
         ],
         messages: [
-            { id: 1, text: "Heyyooo!" },
-            { id: 2, text: "How do you do you?" },
-            { id: 3, text: "Dzzzip Dzaaap" },
-            { id: 4, text: "Piu piu... piu piu piu!" },
-            { id: 5, text: 'Meeeowww ~~' },
+            { id: 1, author: "Oleg", text: "Heyyooo!" },
+            { id: 2, author: "Nadya", text: "How do you do you?" },
+            { id: 3, author: "Oleg", text: "Dzzzip Dzaaap" },
+            { id: 4, author: "Ilya", text: "Piu piu... piu piu piu!" },
+            { id: 6, author: "Nadya", text: 'Meeeowww ~~' },
+            { id: 7, author: "Artem", text: 'wow this beer is so tasty' },
+            { id: 8, author: "Elya", text: 'gogogoogog' },
+            { id: 9, author: "Elya", text: 'Hello from Canada!' },
         ]
     }
 };
@@ -76,8 +82,15 @@ export const addPost = (postMessage: string) => {
     rerenderEntireTree(data);
 }
 
+
 export const onPostTextChange = (text: string) => {
     data.profilePage.newPostText = text;
+    rerenderEntireTree(data);
+}
+
+export const changeActiveDialog = (author: string) => {
+    const newActiveAuthor = data.dialogsPage.dialogsData.find(dialog => dialog.name === author);
+    data.dialogsPage.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
     rerenderEntireTree(data);
 }
 

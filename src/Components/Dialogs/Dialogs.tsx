@@ -1,23 +1,29 @@
 import s from './Dialogs.module.css';
 import UserDialog from './UserDialog/UserDialog';
 import Message from './Message/Message';
-import { dialogType, messageType } from '../../redux/stateTypes'
+import { dialogsPagePropsType } from '../../redux/stateTypes'
 
-type dialogsPagePropsType = {
-    dialogsData: Array<dialogType>
-    messages: Array<messageType>
+type DialogsPropsType = {
+    dialogsPage: dialogsPagePropsType
+    changeActiveDialog: (text: string) => void
 }
 
+const Dialogs = (props: DialogsPropsType) => {
 
-const Dialogs = (props: dialogsPagePropsType) => {
-
-    const dialogsView = props.dialogsData.map(dialog => {
-        return <UserDialog key={dialog.id} id={dialog.id} name={dialog.name} />
+    const dialogsView = props.dialogsPage.dialogsData.map(dialog => {
+        return <UserDialog
+            key={dialog.id}
+            id={dialog.id}
+            name={dialog.name}
+            changeActiveDialog={props.changeActiveDialog}
+        />
     });
 
-    const messagesView = props.messages.map(msg => {
-        return <Message key={msg.id} text={msg.text} />
-    });
+    const messagesView = props.dialogsPage.messages
+        .filter(msg => { return props.dialogsPage.activeDialog.name === msg.author })
+        .map(msg => {
+            return <Message key={msg.id} text={msg.text} />
+        });
 
     return (
         <div className={s.dialogs}>

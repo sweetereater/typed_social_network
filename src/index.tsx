@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, { addPost, onPostTextChange, subscribe } from './redux/state';
+import state, { addPost, onPostTextChange, subscribe, changeActiveDialog } from './redux/state';
 import { stateType } from './redux/stateTypes';
 
 const rerenderEntireTree = (state: stateType) => {
@@ -13,6 +13,7 @@ const rerenderEntireTree = (state: stateType) => {
         state={state}
         addPost={addPost}
         onPostTextChange={onPostTextChange}
+        changeActiveDialog={changeActiveDialog}
       />
     </React.StrictMode>,
     document.getElementById('root')
