@@ -1,24 +1,28 @@
+import React from 'react';
 import s from './Profile.module.css';
 import MyPosts from '../MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-
-type postType = {
-    id: number,
-    text: string,
-    likesCount: number,
-    imgSrc: string
-}
+import { postType } from '../../redux/stateTypes';
+import { profilePagePropsType } from '../../redux/stateTypes';
 
 type ProfilePropsType = {
-    posts: Array<postType>
+    profilePage: profilePagePropsType
+    addPost: (text: string) => void
+    handlePostChange: (text: string) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
+
     return (
         <main className={s.main}>
             <img className={s.main__img} src="https://klike.net/uploads/posts/2019-06/1559370578_1.jpg" alt="" />
             <ProfileInfo />
-            <MyPosts posts={props.posts} />
+            <MyPosts
+                posts={props.profilePage.posts}
+                addPost={props.addPost}
+                newPostText={props.profilePage.newPostText}
+                onNewPostTextChange={props.handlePostChange}
+            />
         </main>
     )
 }

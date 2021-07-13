@@ -1,17 +1,13 @@
 import s from './Post.module.css';
+import { postType } from '../../../redux/stateTypes';
 
-type PostPropsType = {
-    text: string
-    likesCount: number
-    imageSource: string
-}
 
-const Post = (props: PostPropsType) => {
+const Post = (props: postType) => {
     return (
         <div className={s.post}>
             <img
                 className={s.post__img}
-                src={props.imageSource}
+                src={props.imgSrc}
                 alt=""
             />
             {props.text}

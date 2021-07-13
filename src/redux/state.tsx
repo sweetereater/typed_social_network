@@ -1,6 +1,13 @@
+import { ChangeEvent } from 'react';
+import { stateType } from './stateTypes';
+
+let rerenderEntireTree = (state: stateType) => {
+    console.log('??');
+}
+
 const data = {
     profilePage: {
-        postsData: [
+        posts: [
             {
                 id: 1,
                 text: "Hello World!",
@@ -33,6 +40,7 @@ const data = {
             },
 
         ],
+        newPostText: "it-kamasutra :)"
     },
     dialogsPage: {
         dialogsData: [
@@ -51,5 +59,30 @@ const data = {
         ]
     }
 };
+
+export const addPost = (postMessage: string) => {
+
+    const randomNum = Math.floor(Math.random() * 100)
+
+    const newPost = {
+        id: data.profilePage.posts.length + 1,
+        text: postMessage,
+        likesCount: 0,
+        imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
+    }
+
+    data.profilePage.posts.push(newPost);
+    data.profilePage.newPostText = "";
+    rerenderEntireTree(data);
+}
+
+export const onPostTextChange = (text: string) => {
+    data.profilePage.newPostText = text;
+    rerenderEntireTree(data);
+}
+
+export const subscribe = (observer: (state: stateType) => void) => {
+    rerenderEntireTree = observer;
+}
 
 export default data;

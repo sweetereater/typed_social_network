@@ -11,7 +11,7 @@ const ProfileInfo = () => {
                 />
             </div>
             <div className={s.desc}>
-                <h1>Privet!</h1>
+                <h1>Privet React with Typescript!</h1>
             </div>
         </div>
     )
