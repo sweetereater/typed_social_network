@@ -3,6 +3,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import { postType } from '../../redux/stateTypes'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
+import { Button, Input } from '@material-ui/core';
 
 
 type MyPostsPropsType = {
@@ -37,18 +38,24 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     return (
         <div className={s.posts}>
-            My Posts
             <div>
-                <div>
-                    <textarea
+                <div className={s.addPostInput}>
+                    <Input
+                        color="primary"
                         value={props.newPostText}
                         onChange={handleTextAreaChange}
                     />
                 </div>
-                <div>
-                    <button onClick={handleClick}>Add new post</button>
+
+                <div className={s.addPostButton}>
+                    <Button
+                        onClick={handleClick}
+                        variant="contained"
+                        color="primary"
+                    >Add new post</Button>
                 </div>
             </div>
+            <h3>My Posts</h3>
             {postView}
         </div>
     )

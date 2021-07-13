@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import state, { addPost, onPostTextChange, subscribe } from './redux/state';
 import { stateType } from './redux/stateTypes';
-// import state, { addPost } from './redux/state';
 
 const rerenderEntireTree = (state: stateType) => {
   ReactDOM.render(

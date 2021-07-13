@@ -2,3 +2,10 @@
     margin-top: 2em;
     margin-left: 2em;
 }
+
+.addPostInput {
+    margin: 15px;
+}
+.addPostButton {
+    margin: 10px;
+}
