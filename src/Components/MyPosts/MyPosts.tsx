@@ -14,6 +14,8 @@ type MyPostsPropsType = {
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
+    // const textFieldRef = React.createRef<HTMLTextAreaElement>();
+
     const postView = props.posts.map(post => {
         return <Post
             id={post.id}

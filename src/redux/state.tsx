@@ -1,5 +1,5 @@
-import React from 'react';
-import { stateType } from './stateTypes';
+// import React from 'react';
+import { postType, stateType } from './stateTypes';
 
 let rerenderEntireTree = (state: stateType) => {
     console.log('??');
@@ -71,7 +71,7 @@ export const addPost = (postMessage: string) => {
 
     const randomNum = Math.floor(Math.random() * 100)
 
-    const newPost = {
+    const newPost: postType = {
         id: data.profilePage.posts.length + 1,
         text: postMessage,
         likesCount: 0,
