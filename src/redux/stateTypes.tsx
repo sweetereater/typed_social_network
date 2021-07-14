@@ -1,40 +1,50 @@
 import { ChangeEvent } from "react"
 
-export type dialogType = {
+export type DialogType = {
     id: number,
     name: string
 }
 
-export type messageType = {
+export type MessageType = {
     id: number
     author: string
     text: string
 }
 
-export type postType = {
+export type PostType = {
     id: number,
     text: string,
     likesCount: number,
     imgSrc: string
 }
 
-export type dialogsPagePropsType = {
-    activeDialog: dialogType
-    dialogsData: Array<dialogType>
-    messages: Array<messageType>
+export type DialogsPagePropsType = {
+    activeDialog: DialogType
+    dialogsData: Array<DialogType>
+    messages: Array<MessageType>
 }
-export type profilePagePropsType = {
-    posts: Array<postType>
+export type ProfilePagePropsType = {
+    posts: Array<PostType>
     newPostText: string
 }
 
-export type stateType = {
-    profilePage: profilePagePropsType
-    dialogsPage: dialogsPagePropsType
+export type StateType = {
+    profilePage: ProfilePagePropsType
+    dialogsPage: DialogsPagePropsType
+}
+
+export type StoreType = {
+    _state: StateType,
+    getState: () => StateType
+    addPost: (postMessage: string) => void
+    onPostTextChange: (text: string) => void
+    changeActiveDialog: (author: string) => void
+    _callSubscriber: (state: StateType) => void
+    subscribe: (observer: (state: StateType) => void) => void
 }
 
 type AppStatePropsType = {
-    state: stateType
+    state: StateType
     addPost: (text: string) => void
     onPostTextChange: (text: string) => void
     changeActiveDialog: (text: string) => void

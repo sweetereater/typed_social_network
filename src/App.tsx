@@ -7,7 +7,7 @@ import AppStatePropsType from './redux/stateTypes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
-function App(props: AppStatePropsType) {
+const App: React.FC<AppStatePropsType> = (props) => {
 
   const profilePage = <Profile
     profilePage={props.state.profilePage}

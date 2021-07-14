@@ -1,12 +1,12 @@
 import React, { ChangeEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import { postType } from '../../redux/stateTypes'
+import { PostType } from '../../redux/stateTypes'
 import { Button, Input } from '@material-ui/core';
 
 
 type MyPostsPropsType = {
-    posts: Array<postType>
+    posts: Array<PostType>
     newPostText: string
     addPost: (text: string) => void
     onNewPostTextChange: (text: string) => void

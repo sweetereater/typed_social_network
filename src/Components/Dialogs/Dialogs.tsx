@@ -1,10 +1,10 @@
 import s from './Dialogs.module.css';
 import UserDialog from './UserDialog/UserDialog';
 import Message from './Message/Message';
-import { dialogsPagePropsType } from '../../redux/stateTypes'
+import { DialogsPagePropsType } from '../../redux/stateTypes'
 
 type DialogsPropsType = {
-    dialogsPage: dialogsPagePropsType
+    dialogsPage: DialogsPagePropsType
     changeActiveDialog: (text: string) => void
 }
 

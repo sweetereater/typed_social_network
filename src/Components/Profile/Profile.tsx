@@ -2,10 +2,10 @@ import React from 'react';
 import s from './Profile.module.css';
 import MyPosts from '../MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import { profilePagePropsType } from '../../redux/stateTypes';
+import { ProfilePagePropsType } from '../../redux/stateTypes';
 
 type ProfilePropsType = {
-    profilePage: profilePagePropsType
+    profilePage: ProfilePagePropsType
     addPost: (text: string) => void
     handlePostChange: (text: string) => void
 }

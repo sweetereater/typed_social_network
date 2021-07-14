@@ -1,8 +1,8 @@
 import s from './Post.module.css';
-import { postType } from '../../../redux/stateTypes';
+import { PostType } from '../../../redux/stateTypes';
 
 
-const Post = (props: postType) => {
+const Post = (props: PostType) => {
     return (
         <div className={s.post}>
             <img
