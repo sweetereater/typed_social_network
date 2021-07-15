@@ -1,11 +1,11 @@
 import s from './Dialogs.module.css';
 import UserDialog from './UserDialog/UserDialog';
 import Message from './Message/Message';
-import { ActionType, DialogsPagePropsType } from '../../redux/stateTypes'
+import { ActionTypes, DialogsPagePropsType } from '../../redux/stateTypes'
 
 type DialogsPropsType = {
     dialogsPage: DialogsPagePropsType
-    dispatch: (action: ActionType) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -20,7 +20,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     });
 
     const messagesView = props.dialogsPage.messages
-        .filter(msg => { return props.dialogsPage.activeDialog.name === msg.author })
+        .filter(msg => { return props.dialogsPage.activeDialog.id === msg.authorId })
         .map(msg => {
             return <Message key={msg.id} text={msg.text} />
         });

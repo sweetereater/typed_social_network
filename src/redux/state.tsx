@@ -1,4 +1,9 @@
-import { PostType, StateType, StoreType, ActionType } from './stateTypes';
+import { PostType, StateType, StoreType, ActionTypes, AddPostT, UpdateNewPostTextT, ChangeActiveDialogT } from './stateTypes';
+
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const CHANGE_ACTIVE_DIALOG = "CHANGE-ACTIVE-DIALOG";
+
 
 const store: StoreType = {
     _state: {
@@ -34,6 +39,12 @@ const store: StoreType = {
                     likesCount: 9,
                     imgSrc: "http://www.thaicybergames.com/dota/images/heroes/43.jpg"
                 },
+                {
+                    id: 6,
+                    text: "Почти 40% пути, еее. Становится сложнее и интереснее",
+                    likesCount: 15,
+                    imgSrc: "http://www.thaicybergames.com/dota/images/heroes/12.jpg"
+                }
 
             ],
             newPostText: "it-kamasutra :)"
@@ -51,14 +62,14 @@ const store: StoreType = {
                 { id: 5, name: "Ilya" },
             ],
             messages: [
-                { id: 1, author: "Oleg", text: "Heyyooo!" },
-                { id: 2, author: "Nadya", text: "How do you do you?" },
-                { id: 3, author: "Oleg", text: "Dzzzip Dzaaap" },
-                { id: 4, author: "Ilya", text: "Piu piu... piu piu piu!" },
-                { id: 6, author: "Nadya", text: 'Meeeowww ~~' },
-                { id: 7, author: "Artem", text: 'wow this beer is so tasty' },
-                { id: 8, author: "Elya", text: 'gogogoogog' },
-                { id: 9, author: "Elya", text: 'Hello from Canada!' },
+                { id: 1, authorId: 2, text: "Heyyooo!" },
+                { id: 2, authorId: 1, text: "How do you do you?" },
+                { id: 3, authorId: 2, text: "Dzzzip Dzaaap" },
+                { id: 4, authorId: 5, text: "Piu piu... piu piu piu!" },
+                { id: 6, authorId: 1, text: 'Meeeowww ~~' },
+                { id: 7, authorId: 3, text: 'wow this beer is so tasty' },
+                { id: 8, authorId: 4, text: 'gogogoogog' },
+                { id: 9, authorId: 4, text: 'Hello from Canada!' },
             ]
         }
     },
@@ -75,17 +86,17 @@ const store: StoreType = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action: ActionType) {
+    dispatch(action: ActionTypes) {
 
         switch (action.type) {
-            case "ADD-POST":
+            case ADD_POST:
                 this._addPost(action.text);
                 break;
-            case "UPDATE-NEW-POST-TEXT":
+            case UPDATE_NEW_POST_TEXT:
                 this._onPostTextChange(action.text);
                 break;
-            case "CHANGE-ACTIVE-DIALOG":
-                this._changeActiveDialog(action.text);
+            case CHANGE_ACTIVE_DIALOG:
+                this._changeActiveDialog(action.authorId);
                 break;
         }
     },
@@ -110,13 +121,44 @@ const store: StoreType = {
         this._callSubscriber(this.getState());
     },
 
-    _changeActiveDialog(author: string) {
-        const newActiveAuthor = this._state.dialogsPage.dialogsData.find(dialog => dialog.name === author);
+    _changeActiveDialog(authorId: number) {
+        const newActiveAuthor = this._state.dialogsPage.dialogsData.find(dialog => dialog.id === authorId);
         this._state.dialogsPage.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
         this._callSubscriber(this.getState());
 
     },
 
 };
+
+// Action Creators (Lesson 39)
+
+// export type AddPostT_useless = {
+//     type: "ADD-POST"
+//     text: string
+// }
+// export type AddPostT_uselessFromFunction = ReturnType<typeof addPostAC>
+
+export const addPostAC = (text: string): AddPostT => {
+    return {
+        type: ADD_POST,
+        text: text
+    }
+}
+
+export const changeActiveDialogAC = (id: number): ChangeActiveDialogT => {
+    return {
+        type: CHANGE_ACTIVE_DIALOG,
+        authorId: id
+    }
+}
+
+export const updateNewPostTextAC = (text: string): UpdateNewPostTextT => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        text
+    }
+}
+
+
 
 export default store;
