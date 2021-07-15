@@ -76,20 +76,21 @@ const store: StoreType = {
     },
 
     dispatch(action: ActionType) {
+
         switch (action.type) {
             case "ADD-POST":
-                this.addPost("biba");
+                this._addPost(action.text);
                 break;
             case "UPDATE-NEW-POST-TEXT":
-                this.onPostTextChange(action.text);
+                this._onPostTextChange(action.text);
                 break;
             case "CHANGE-ACTIVE-DIALOG":
-                this.changeActiveDialog(action.text);
+                this._changeActiveDialog(action.text);
                 break;
         }
     },
 
-    addPost(postMessage: string) {
+    _addPost(postMessage: string) {
         const randomNum = Math.floor(Math.random() * 100)
 
         const newPost: PostType = {
@@ -104,12 +105,12 @@ const store: StoreType = {
         this._callSubscriber(this.getState());
     },
 
-    onPostTextChange(text: string) {
+    _onPostTextChange(text: string) {
         this._state.profilePage.newPostText = text;
         this._callSubscriber(this.getState());
     },
 
-    changeActiveDialog(author: string) {
+    _changeActiveDialog(author: string) {
         const newActiveAuthor = this._state.dialogsPage.dialogsData.find(dialog => dialog.name === author);
         this._state.dialogsPage.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
         this._callSubscriber(this.getState());
