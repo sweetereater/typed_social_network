@@ -33,21 +33,28 @@ export type StateType = {
     dialogsPage: DialogsPagePropsType
 }
 
+type TypeForAction = "ADD-POST" | "UPDATE-NEW-POST-TEXT" | "CHANGE-ACTIVE-DIALOG"
+
+
+export type ActionType = {
+    type: TypeForAction
+    text: string
+}
+
 export type StoreType = {
     _state: StateType,
     getState: () => StateType
+    _callSubscriber: (state: StateType) => void
+    subscribe: (observer: (state: StateType) => void) => void
+    dispatch: (action: ActionType) => void
     addPost: (postMessage: string) => void
     onPostTextChange: (text: string) => void
     changeActiveDialog: (author: string) => void
-    _callSubscriber: (state: StateType) => void
-    subscribe: (observer: (state: StateType) => void) => void
 }
 
 type AppStatePropsType = {
     state: StateType
-    addPost: (text: string) => void
-    onPostTextChange: (text: string) => void
-    changeActiveDialog: (text: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 export default AppStatePropsType;

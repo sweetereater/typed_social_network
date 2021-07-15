@@ -1,20 +1,17 @@
 import React, { ChangeEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import { PostType } from '../../redux/stateTypes'
+import { ActionType, PostType } from '../../redux/stateTypes'
 import { Button, Input } from '@material-ui/core';
 
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    addPost: (text: string) => void
-    onNewPostTextChange: (text: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
-
-    // const textFieldRef = React.createRef<HTMLTextAreaElement>();
 
     const postView = props.posts.map(post => {
         return <Post
@@ -27,12 +24,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     })
 
     const handleClick = () => {
-        props.addPost(props.newPostText);
+        props.dispatch({ type: "ADD-POST", text: props.newPostText });
     }
 
-    const handleTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget.value;
-        props.onNewPostTextChange(newText);
+        props.dispatch({ type: "UPDATE-NEW-POST-TEXT", text: newText });
     }
 
     return (
@@ -42,7 +39,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                     <Input
                         color="primary"
                         value={props.newPostText}
-                        onChange={handleTextAreaChange}
+                        onChange={handleInputChange}
                     />
                 </div>
 

@@ -11,8 +11,7 @@ const App: React.FC<AppStatePropsType> = (props) => {
 
   const profilePage = <Profile
     profilePage={props.state.profilePage}
-    addPost={props.addPost}
-    handlePostChange={props.onPostTextChange}
+    dispatch={props.dispatch}
   />;
 
   return (
@@ -30,7 +29,7 @@ const App: React.FC<AppStatePropsType> = (props) => {
           <Route path='/messages'>
             <Dialogs
               dialogsPage={props.state.dialogsPage}
-              changeActiveDialog={props.changeActiveDialog}
+              dispatch={props.dispatch}
             />
           </Route>
         </Switch>

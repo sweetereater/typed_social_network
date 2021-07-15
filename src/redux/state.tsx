@@ -1,4 +1,4 @@
-import { PostType, StateType, StoreType } from './stateTypes';
+import { PostType, StateType, StoreType, ActionType } from './stateTypes';
 
 const store: StoreType = {
     _state: {
@@ -75,9 +75,21 @@ const store: StoreType = {
         this._callSubscriber = observer;
     },
 
+    dispatch(action: ActionType) {
+        switch (action.type) {
+            case "ADD-POST":
+                this.addPost("biba");
+                break;
+            case "UPDATE-NEW-POST-TEXT":
+                this.onPostTextChange(action.text);
+                break;
+            case "CHANGE-ACTIVE-DIALOG":
+                this.changeActiveDialog(action.text);
+                break;
+        }
+    },
+
     addPost(postMessage: string) {
-        debugger;
-        console.log(this);
         const randomNum = Math.floor(Math.random() * 100)
 
         const newPost: PostType = {

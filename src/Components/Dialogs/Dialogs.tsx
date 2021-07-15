@@ -1,11 +1,11 @@
 import s from './Dialogs.module.css';
 import UserDialog from './UserDialog/UserDialog';
 import Message from './Message/Message';
-import { DialogsPagePropsType } from '../../redux/stateTypes'
+import { ActionType, DialogsPagePropsType } from '../../redux/stateTypes'
 
 type DialogsPropsType = {
     dialogsPage: DialogsPagePropsType
-    changeActiveDialog: (text: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -15,7 +15,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             key={dialog.id}
             id={dialog.id}
             name={dialog.name}
-            changeActiveDialog={props.changeActiveDialog}
+            dispatch={props.dispatch}
         />
     });
 
