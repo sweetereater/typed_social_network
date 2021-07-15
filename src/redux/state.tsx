@@ -1,5 +1,3 @@
-// import React from 'react';
-import { getJSDocTemplateTag } from 'typescript';
 import { PostType, StateType, StoreType } from './stateTypes';
 
 const store: StoreType = {
@@ -65,12 +63,16 @@ const store: StoreType = {
         }
     },
 
+    getState() {
+        return this._state;
+    },
+
     _callSubscriber(state: StateType) {
         console.log('waiting for changes');
     },
 
-    getState() {
-        return this._state;
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
 
     addPost(postMessage: string) {
@@ -102,42 +104,6 @@ const store: StoreType = {
 
     },
 
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    }
-
-
 };
-
-// export const addPost = (postMessage: string) => {
-
-//     const randomNum = Math.floor(Math.random() * 100)
-
-//     const newPost: postType = {
-//         id: data.profilePage.posts.length + 1,
-//         text: postMessage,
-//         likesCount: 0,
-//         imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
-//     }
-
-//     data.profilePage.posts.push(newPost);
-//     data.profilePage.newPostText = "";
-//     rerenderEntireTree(data);
-// }
-
-// export const onPostTextChange = (text: string) => {
-//     data.profilePage.newPostText = text;
-//     rerenderEntireTree(data);
-// }
-
-// export const changeActiveDialog = (author: string) => {
-//     const newActiveAuthor = data.dialogsPage.dialogsData.find(dialog => dialog.name === author);
-//     data.dialogsPage.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
-//     rerenderEntireTree(data);
-// }
-
-// export const subscribe = (observer: (state: stateType) => void) => {
-//     rerenderEntireTree = observer;
-// }
 
 export default store;
