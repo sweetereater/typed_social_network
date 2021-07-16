@@ -7,14 +7,18 @@ import {
     UpdateNewPostTextT,
     ChangeActiveDialogT,
     UpdateNewMessageTextT,
-    AddNewMessageT
+    AddNewMessageT,
+
 } from './stateTypes';
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const CHANGE_ACTIVE_DIALOG = "CHANGE-ACTIVE-DIALOG";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
-const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
+// importing action.type values
+import {
+    ADD_POST,
+    UPDATE_NEW_POST_TEXT,
+    CHANGE_ACTIVE_DIALOG,
+    UPDATE_NEW_MESSAGE_TEXT,
+    ADD_NEW_MESSAGE
+} from './stateTypes';
 
 
 const store: StoreType = {
@@ -159,8 +163,9 @@ const store: StoreType = {
                 text: this._state.dialogsPage.newMessageText,
             }
             this._state.dialogsPage.messages = [...this._state.dialogsPage.messages, newMsg];
-            this._callSubscriber(this.getState());
             this._state.dialogsPage.newMessageText = "";
+
+            this._callSubscriber(this.getState());
         }
 
     }

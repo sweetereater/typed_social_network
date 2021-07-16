@@ -34,28 +34,36 @@ export type StateType = {
     dialogsPage: DialogsPagePropsType
 }
 
+// Actions and Action Creators 
+
+export const ADD_POST = "ADD-POST";
+export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+export const CHANGE_ACTIVE_DIALOG = "CHANGE-ACTIVE-DIALOG";
+export const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+export const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
+
 export type AddPostT = {
-    type: "ADD-POST"
+    type: typeof ADD_POST
     text: string
 }
 
 export type UpdateNewPostTextT = {
-    type: "UPDATE-NEW-POST-TEXT"
+    type: typeof UPDATE_NEW_POST_TEXT
     text: string
 }
 
 export type ChangeActiveDialogT = {
-    type: "CHANGE-ACTIVE-DIALOG"
+    type: typeof CHANGE_ACTIVE_DIALOG
     authorId: number
 }
 
 export type UpdateNewMessageTextT = {
-    type: "UPDATE-NEW-MESSAGE-TEXT"
+    type: typeof UPDATE_NEW_MESSAGE_TEXT
     newMessageText: string
 }
 
 export type AddNewMessageT = {
-    type: "ADD-NEW-MESSAGE"
+    type: typeof ADD_NEW_MESSAGE
 }
 
 export type ActionTypes = AddPostT |
