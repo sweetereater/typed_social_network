@@ -22,6 +22,7 @@ export type DialogsPagePropsType = {
     activeDialog: DialogType
     dialogsData: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string;
 }
 export type ProfilePagePropsType = {
     posts: Array<PostType>
@@ -48,7 +49,21 @@ export type ChangeActiveDialogT = {
     authorId: number
 }
 
-export type ActionTypes = AddPostT | UpdateNewPostTextT | ChangeActiveDialogT
+export type UpdateNewMessageTextT = {
+    type: "UPDATE-NEW-MESSAGE-TEXT"
+    newMessageText: string
+}
+
+export type AddNewMessageT = {
+    type: "ADD-NEW-MESSAGE"
+}
+
+export type ActionTypes = AddPostT |
+    UpdateNewPostTextT |
+    ChangeActiveDialogT |
+    UpdateNewMessageTextT |
+    AddNewMessageT
+
 
 export type StoreType = {
     _state: StateType,
@@ -59,6 +74,8 @@ export type StoreType = {
     _addPost: (postMessage: string) => void
     _onPostTextChange: (text: string) => void
     _changeActiveDialog: (authorId: number) => void
+    _updateNewMsgText: (text: string) => void
+    _addNewMsg: () => void
 }
 
 type AppStatePropsType = {

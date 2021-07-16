@@ -1,7 +1,7 @@
 .dialogs {
     background-color: rgb(194, 207, 231);
     display: grid;
-    grid-template-columns: 3fr 6fr;
+    grid-template-columns: 3fr 7fr;
 }
 
 .dialogsItems {
@@ -15,4 +15,6 @@
 
 .messages {
     padding: 10px;
+    position: relative;
 }
+

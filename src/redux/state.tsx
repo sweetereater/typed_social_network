@@ -1,8 +1,20 @@
-import { PostType, StateType, StoreType, ActionTypes, AddPostT, UpdateNewPostTextT, ChangeActiveDialogT } from './stateTypes';
+import {
+    PostType,
+    StateType,
+    StoreType,
+    ActionTypes,
+    AddPostT,
+    UpdateNewPostTextT,
+    ChangeActiveDialogT,
+    UpdateNewMessageTextT,
+    AddNewMessageT
+} from './stateTypes';
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const CHANGE_ACTIVE_DIALOG = "CHANGE-ACTIVE-DIALOG";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
 
 
 const store: StoreType = {
@@ -70,7 +82,8 @@ const store: StoreType = {
                 { id: 7, authorId: 3, text: 'wow this beer is so tasty' },
                 { id: 8, authorId: 4, text: 'gogogoogog' },
                 { id: 9, authorId: 4, text: 'Hello from Canada!' },
-            ]
+            ],
+            newMessageText: ""
         }
     },
 
@@ -87,7 +100,6 @@ const store: StoreType = {
     },
 
     dispatch(action: ActionTypes) {
-
         switch (action.type) {
             case ADD_POST:
                 this._addPost(action.text);
@@ -97,6 +109,12 @@ const store: StoreType = {
                 break;
             case CHANGE_ACTIVE_DIALOG:
                 this._changeActiveDialog(action.authorId);
+                break;
+            case UPDATE_NEW_MESSAGE_TEXT:
+                this._updateNewMsgText(action.newMessageText);
+                break;
+            case ADD_NEW_MESSAGE:
+                this._addNewMsg();
                 break;
         }
     },
@@ -128,6 +146,25 @@ const store: StoreType = {
 
     },
 
+    _updateNewMsgText(newMessageText: string) {
+        this._state.dialogsPage.newMessageText = newMessageText;
+        this._callSubscriber(this.getState());
+    },
+
+    _addNewMsg() {
+        if (this._state.dialogsPage.newMessageText) {
+            const newMsg = {
+                id: this._state.dialogsPage.messages.length + 1,
+                authorId: this._state.dialogsPage.activeDialog.id,
+                text: this._state.dialogsPage.newMessageText,
+            }
+            this._state.dialogsPage.messages = [...this._state.dialogsPage.messages, newMsg];
+            this._callSubscriber(this.getState());
+            this._state.dialogsPage.newMessageText = "";
+        }
+
+    }
+
 };
 
 // Action Creators (Lesson 39)
@@ -156,6 +193,19 @@ export const updateNewPostTextAC = (text: string): UpdateNewPostTextT => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         text
+    }
+}
+
+export const updateNewMessageTextAC = (text: string): UpdateNewMessageTextT => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newMessageText: text
+    }
+}
+
+export const addNewMessageAC = (): AddNewMessageT => {
+    return {
+        type: ADD_NEW_MESSAGE,
     }
 }
 

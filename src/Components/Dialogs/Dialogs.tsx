@@ -2,6 +2,7 @@ import s from './Dialogs.module.css';
 import UserDialog from './UserDialog/UserDialog';
 import Message from './Message/Message';
 import { ActionTypes, DialogsPagePropsType } from '../../redux/stateTypes'
+import NewMessageInput from './NewMessage/NewMessage';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPagePropsType
@@ -32,6 +33,9 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesView}
+                <NewMessageInput
+                    value={props.dialogsPage.newMessageText}
+                    dispatch={props.dispatch} />
             </div>
         </div>
     )
