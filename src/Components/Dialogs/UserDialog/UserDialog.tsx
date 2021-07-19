@@ -1,19 +1,16 @@
-// import { Button } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
-import { ActionTypes } from '../../../redux/stateTypes';
 import s from './UserDialog.module.css';
-import { changeActiveDialogAC } from '../../../redux/dialogsPageReducer';
+import { NavLink } from 'react-router-dom';
 
 type UserDialogType = {
     id: number
     name: string
-    dispatch: (action: ActionTypes) => void
+    changeActiveDialog: (id: number) => void
 }
 
 const UserDialog: React.FC<UserDialogType> = (props) => {
 
     const handleClick = () => {
-        props.dispatch(changeActiveDialogAC(props.id));
+        props.changeActiveDialog(props.id);
     }
 
     const path = `/messages/${props.id}`;

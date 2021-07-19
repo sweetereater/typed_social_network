@@ -1,24 +1,22 @@
 import s from './NewMessage.module.css';
 import { ChangeEvent } from 'react';
 import { Button } from '@material-ui/core';
-import { ActionTypes } from '../../../redux/stateTypes';
-import { addNewMessageAC, updateNewMessageTextAC } from '../../../redux/dialogsPageReducer'
 
 
 type NewMessagePropsType = {
     value: string;
-    dispatch: (action: ActionTypes) => void
+    addNewMessage: () => void
+    onNewMessageTextChange: (text: string) => void
 }
 
 const NewMessageInput: React.FC<NewMessagePropsType> = (props) => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-
-        props.dispatch(updateNewMessageTextAC(e.currentTarget.value));
+        props.onNewMessageTextChange(e.currentTarget.value);
     }
 
     const handleClick = () => {
-        props.dispatch(addNewMessageAC())
+        props.addNewMessage();
     }
 
     return (

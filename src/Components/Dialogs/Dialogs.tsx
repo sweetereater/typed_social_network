@@ -1,22 +1,25 @@
 import s from './Dialogs.module.css';
 import UserDialog from './UserDialog/UserDialog';
 import Message from './Message/Message';
-import { ActionTypes, DialogsPagePropsType } from '../../redux/stateTypes'
+import { DialogsPagePropsType } from '../../redux/stateTypes'
 import NewMessageInput from './NewMessage/NewMessage';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPagePropsType
-    dispatch: (action: ActionTypes) => void
+    changeActiveDialog: (id: number) => void
+    addNewMessage: () => void
+    onNewMessageTextChange: (text: string) => void
 }
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const dialogsView = props.dialogsPage.dialogsData.map(dialog => {
+
         return <UserDialog
             key={dialog.id}
             id={dialog.id}
             name={dialog.name}
-            dispatch={props.dispatch}
+            changeActiveDialog={props.changeActiveDialog}
         />
     });
 
@@ -35,7 +38,9 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 {messagesView}
                 <NewMessageInput
                     value={props.dialogsPage.newMessageText}
-                    dispatch={props.dispatch} />
+                    addNewMessage={props.addNewMessage}
+                    onNewMessageTextChange={props.onNewMessageTextChange}
+                />
             </div>
         </div>
     )

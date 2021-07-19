@@ -2,9 +2,9 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import Profile from './Components/Profile/Profile';
-import Dialogs from './Components/Dialogs/Dialogs';
 import AppStatePropsType from './redux/stateTypes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import DialogsContainer from './Components/Dialogs/DialogsContainer';
 
 
 const App: React.FC<AppStatePropsType> = (props) => {
@@ -26,7 +26,7 @@ const App: React.FC<AppStatePropsType> = (props) => {
             {profilePage}
           </Route>
           <Route path='/messages'>
-            <Dialogs
+            <DialogsContainer
               dialogsPage={props.state.dialogsPage}
               dispatch={props.dispatch}
             />
