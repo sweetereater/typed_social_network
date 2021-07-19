@@ -1,7 +1,9 @@
 import {
     ActionTypes,
     DialogsPagePropsType,
-
+    ChangeActiveDialogT,
+    UpdateNewMessageTextT,
+    AddNewMessageT
 } from './stateTypes'
 
 import {
@@ -10,9 +12,10 @@ import {
     ADD_NEW_MESSAGE
 } from './stateTypes';
 
-const dialogsReducer = (action: ActionTypes, state: DialogsPagePropsType) => {
+const dialogsReducer = (action: ActionTypes, state: DialogsPagePropsType): DialogsPagePropsType => {
     switch (action.type) {
         case CHANGE_ACTIVE_DIALOG:
+
             const newActiveAuthor = state.dialogsData.find(dialog => dialog.id === action.authorId);
             state.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
             return state;
@@ -33,6 +36,27 @@ const dialogsReducer = (action: ActionTypes, state: DialogsPagePropsType) => {
             return state;
         default:
             return state;
+    }
+}
+
+
+export const changeActiveDialogAC = (id: number): ChangeActiveDialogT => {
+    return {
+        type: CHANGE_ACTIVE_DIALOG,
+        authorId: id
+    }
+}
+
+export const updateNewMessageTextAC = (text: string): UpdateNewMessageTextT => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newMessageText: text
+    }
+}
+
+export const addNewMessageAC = (): AddNewMessageT => {
+    return {
+        type: ADD_NEW_MESSAGE,
     }
 }
 

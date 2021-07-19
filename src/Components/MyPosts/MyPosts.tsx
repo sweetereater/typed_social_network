@@ -3,7 +3,7 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import { ActionTypes, PostType } from '../../redux/stateTypes'
 import { Button, Input } from '@material-ui/core';
-import { addPostAC, updateNewPostTextAC } from '../../redux/state';
+import { addPostAC, updateNewPostTextAC } from '../../redux/profilePageReducer';
 
 
 type MyPostsPropsType = {

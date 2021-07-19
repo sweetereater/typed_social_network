@@ -1,7 +1,9 @@
 import {
     ProfilePagePropsType,
     PostType,
-    ActionTypes
+    ActionTypes,
+    AddPostT,
+    UpdateNewPostTextT
 } from './stateTypes';
 
 import {
@@ -9,7 +11,7 @@ import {
     UPDATE_NEW_POST_TEXT
 } from './stateTypes';
 
-const profileReducer = (action: ActionTypes, state: ProfilePagePropsType) => {
+const profileReducer = (action: ActionTypes, state: ProfilePagePropsType): ProfilePagePropsType => {
     switch (action.type) {
         case ADD_POST:
 
@@ -31,6 +33,28 @@ const profileReducer = (action: ActionTypes, state: ProfilePagePropsType) => {
             return state;
         default:
             return state;
+    }
+}
+
+// Action Creators (Lesson 39)
+
+// export type AddPostT_useless = {
+//     type: "ADD-POST"
+//     text: string
+// }
+// export type AddPostT_uselessFromFunction = ReturnType<typeof addPostAC>
+
+export const addPostAC = (text: string): AddPostT => {
+    return {
+        type: ADD_POST,
+        text: text
+    }
+}
+
+export const updateNewPostTextAC = (text: string): UpdateNewPostTextT => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        text
     }
 }
 

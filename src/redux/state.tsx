@@ -2,22 +2,8 @@ import {
     PostType,
     StateType,
     StoreType,
-    ActionTypes,
-    AddPostT,
-    UpdateNewPostTextT,
-    ChangeActiveDialogT,
-    UpdateNewMessageTextT,
-    AddNewMessageT,
+    ActionTypes
 
-} from './stateTypes';
-
-// importing action.type values
-import {
-    ADD_POST,
-    UPDATE_NEW_POST_TEXT,
-    CHANGE_ACTIVE_DIALOG,
-    UPDATE_NEW_MESSAGE_TEXT,
-    ADD_NEW_MESSAGE
 } from './stateTypes';
 
 import profileReducer from './profilePageReducer';
@@ -106,102 +92,11 @@ const store: StoreType = {
     },
 
     dispatch(action: ActionTypes) {
-        this._state.profilePage = profileReducer(action, store.getState().profilePage);
-        this._state.dialogsPage = dialogsReducer(action, store.getState().dialogsPage);
+        this._state.profilePage = profileReducer(action, this._state.profilePage);
+        this._state.dialogsPage = dialogsReducer(action, this._state.dialogsPage);
         this._callSubscriber(this.getState());
     },
-
-    _addPost(postMessage: string) {
-        const randomNum = Math.floor(Math.random() * 100)
-
-        const newPost: PostType = {
-            id: this._state.profilePage.posts.length + 1,
-            text: postMessage,
-            likesCount: 0,
-            imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
-        }
-
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber(this.getState());
-    },
-
-    _onPostTextChange(text: string) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this.getState());
-    },
-
-    _changeActiveDialog(authorId: number) {
-        const newActiveAuthor = this._state.dialogsPage.dialogsData.find(dialog => dialog.id === authorId);
-        this._state.dialogsPage.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
-        this._callSubscriber(this.getState());
-
-    },
-
-    _updateNewMsgText(newMessageText: string) {
-        this._state.dialogsPage.newMessageText = newMessageText;
-        this._callSubscriber(this.getState());
-    },
-
-    _addNewMsg() {
-        if (this._state.dialogsPage.newMessageText) {
-            const newMsg = {
-                id: this._state.dialogsPage.messages.length + 1,
-                authorId: this._state.dialogsPage.activeDialog.id,
-                text: this._state.dialogsPage.newMessageText,
-            }
-            this._state.dialogsPage.messages = [...this._state.dialogsPage.messages, newMsg];
-            this._state.dialogsPage.newMessageText = "";
-
-            this._callSubscriber(this.getState());
-        }
-
-    }
-
 };
-
-// Action Creators (Lesson 39)
-
-// export type AddPostT_useless = {
-//     type: "ADD-POST"
-//     text: string
-// }
-// export type AddPostT_uselessFromFunction = ReturnType<typeof addPostAC>
-
-export const addPostAC = (text: string): AddPostT => {
-    return {
-        type: ADD_POST,
-        text: text
-    }
-}
-
-export const changeActiveDialogAC = (id: number): ChangeActiveDialogT => {
-    return {
-        type: CHANGE_ACTIVE_DIALOG,
-        authorId: id
-    }
-}
-
-export const updateNewPostTextAC = (text: string): UpdateNewPostTextT => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text
-    }
-}
-
-export const updateNewMessageTextAC = (text: string): UpdateNewMessageTextT => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newMessageText: text
-    }
-}
-
-export const addNewMessageAC = (): AddNewMessageT => {
-    return {
-        type: ADD_NEW_MESSAGE,
-    }
-}
-
 
 
 export default store;

@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom';
 import { ActionTypes } from '../../../redux/stateTypes';
 import s from './UserDialog.module.css';
-import { changeActiveDialogAC } from '../../../redux/state';
+import { changeActiveDialogAC } from '../../../redux/dialogsPageReducer';
 
 type UserDialogType = {
     id: number

@@ -77,11 +77,6 @@ export type StoreType = {
     _callSubscriber: (state: StateType) => void
     subscribe: (observer: (state: StateType) => void) => void
     dispatch: (action: ActionTypes) => void
-    _addPost: (postMessage: string) => void
-    _onPostTextChange: (text: string) => void
-    _changeActiveDialog: (authorId: number) => void
-    _updateNewMsgText: (text: string) => void
-    _addNewMsg: () => void
 }
 
 type AppStatePropsType = {
