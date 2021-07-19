@@ -8,7 +8,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 const App: React.FC<AppStatePropsType> = (props) => {
-
+  console.log('App props');
+  console.log(props);
+  debugger;
   const profilePage = <Profile
     profilePage={props.state.profilePage}
     dispatch={props.dispatch}

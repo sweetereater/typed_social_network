@@ -12,7 +12,34 @@ import {
     ADD_NEW_MESSAGE
 } from './stateTypes';
 
-const dialogsReducer = (action: ActionTypes, state: DialogsPagePropsType): DialogsPagePropsType => {
+const initialState = {
+    activeDialog: {
+        id: 2,
+        name: "Oleg"
+    },
+    dialogsData: [
+        { id: 1, name: "Nadya" },
+        { id: 2, name: "Oleg" },
+        { id: 3, name: "Artem" },
+        { id: 4, name: "Elya" },
+        { id: 5, name: "Ilya" },
+    ],
+    messages: [
+        { id: 1, authorId: 2, text: "Heyyooo!" },
+        { id: 2, authorId: 1, text: "How do you do you?" },
+        { id: 3, authorId: 2, text: "Dzzzip Dzaaap" },
+        { id: 4, authorId: 5, text: "Piu piu... piu piu piu!" },
+        { id: 6, authorId: 1, text: 'Meeeowww ~~' },
+        { id: 7, authorId: 3, text: 'wow this beer is so tasty' },
+        { id: 8, authorId: 4, text: 'gogogoogog' },
+        { id: 9, authorId: 4, text: 'Hello from Canada!' },
+    ],
+    newMessageText: ""
+};
+
+
+const dialogsReducer = (state: DialogsPagePropsType = initialState, action: ActionTypes): DialogsPagePropsType => {
+    // if (action === undefined) return state;
     switch (action.type) {
         case CHANGE_ACTIVE_DIALOG:
 

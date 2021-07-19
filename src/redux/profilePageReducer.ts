@@ -11,7 +11,51 @@ import {
     UPDATE_NEW_POST_TEXT
 } from './stateTypes';
 
-const profileReducer = (action: ActionTypes, state: ProfilePagePropsType): ProfilePagePropsType => {
+const initialState = {
+    posts: [
+        {
+            id: 1,
+            text: "Hello World!",
+            likesCount: 5,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/72.jpg"
+        },
+        {
+            id: 2,
+            text: "По-тихонечку едем",
+            likesCount: 8,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/101.jpg"
+        },
+        {
+            id: 3,
+            text: "React is nice",
+            likesCount: 12,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/80.jpg"
+        },
+        {
+            id: 4,
+            text: "Как Ваши дела?",
+            likesCount: 6,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/55.jpg"
+        },
+        {
+            id: 5,
+            text: "Почти 25% пути самурая, юхууу!",
+            likesCount: 9,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/43.jpg"
+        },
+        {
+            id: 6,
+            text: "Почти 40% пути, еее. Становится сложнее и интереснее",
+            likesCount: 15,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/12.jpg"
+        }
+
+    ],
+    newPostText: "it-kamasutra :)"
+};
+
+const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
+    // if (action === undefined) return initialState;
     switch (action.type) {
         case ADD_POST:
 
