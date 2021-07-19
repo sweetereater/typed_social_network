@@ -20,6 +20,8 @@ import {
     ADD_NEW_MESSAGE
 } from './stateTypes';
 
+import profileReducer from './profilePageReducer';
+import dialogsReducer from './dialogsPageReducer';
 
 const store: StoreType = {
     _state: {
@@ -104,23 +106,9 @@ const store: StoreType = {
     },
 
     dispatch(action: ActionTypes) {
-        switch (action.type) {
-            case ADD_POST:
-                this._addPost(action.text);
-                break;
-            case UPDATE_NEW_POST_TEXT:
-                this._onPostTextChange(action.text);
-                break;
-            case CHANGE_ACTIVE_DIALOG:
-                this._changeActiveDialog(action.authorId);
-                break;
-            case UPDATE_NEW_MESSAGE_TEXT:
-                this._updateNewMsgText(action.newMessageText);
-                break;
-            case ADD_NEW_MESSAGE:
-                this._addNewMsg();
-                break;
-        }
+        this._state.profilePage = profileReducer(action, store.getState().profilePage);
+        this._state.dialogsPage = dialogsReducer(action, store.getState().dialogsPage);
+        this._callSubscriber(this.getState());
     },
 
     _addPost(postMessage: string) {

@@ -1,6 +1,6 @@
 import s from './NewMessage.module.css';
 import { ChangeEvent } from 'react';
-import { Button, Input } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { ActionTypes } from '../../../redux/stateTypes';
 import { addNewMessageAC, updateNewMessageTextAC } from '../../../redux/state'
 
