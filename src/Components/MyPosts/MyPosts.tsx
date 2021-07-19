@@ -1,15 +1,15 @@
 import React, { ChangeEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import { ActionTypes, PostType } from '../../redux/stateTypes'
+import { PostType } from '../../redux/stateTypes'
 import { Button, Input } from '@material-ui/core';
-import { addPostAC, updateNewPostTextAC } from '../../redux/profilePageReducer';
 
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: ActionTypes) => void
+    addNewPost: () => void
+    inputChange: (text: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -24,12 +24,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     })
 
     const handleClick = () => {
-        props.dispatch(addPostAC(props.newPostText));
+        props.addNewPost();
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget.value;
-        props.dispatch(updateNewPostTextAC(newText));
+        props.inputChange(newText);
     }
 
     return (
