@@ -42,7 +42,6 @@ export const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
 
 export type AddPostT = {
     type: typeof ADD_POST
-    text: string
 }
 
 export type UpdateNewPostTextT = {

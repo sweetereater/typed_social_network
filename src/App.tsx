@@ -7,12 +7,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 
 
-const App: React.FC<AppStatePropsType> = (props) => {
-  const profilePage = <Profile
-    profilePage={props.state.profilePage}
-    dispatch={props.dispatch}
-  />;
-  console.log(props.state.dialogsPage.messages);
+const App: React.FC = (props) => {
+
+  const profilePage = <Profile />;
   return (
     <Router>
       <div className="App">
@@ -26,10 +23,7 @@ const App: React.FC<AppStatePropsType> = (props) => {
             {profilePage}
           </Route>
           <Route path='/messages'>
-            <DialogsContainer
-              dialogsPage={props.state.dialogsPage}
-              dispatch={props.dispatch}
-            />
+            <DialogsContainer />
           </Route>
         </Switch>
       </div>

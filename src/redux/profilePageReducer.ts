@@ -57,19 +57,22 @@ const initialState = {
 const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
     switch (action.type) {
         case ADD_POST:
-            const randomNum = Math.floor(Math.random() * 100)
-            const newPost: PostType = {
-                id: state.posts.length + 1,
-                text: action.text,
-                likesCount: 0,
-                imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
+            if (state.newPostText) {
+                const randomNum = Math.floor(Math.random() * 100)
+                const newPost: PostType = {
+                    id: state.posts.length + 1,
+                    text: state.newPostText,
+                    likesCount: 0,
+                    imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
+                }
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: ""
+                };
             }
 
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-                newPostText: ""
-            };
+            return state;
 
         case UPDATE_NEW_POST_TEXT:
             return { ...state, newPostText: action.text };
@@ -87,12 +90,19 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
 // }
 // export type AddPostT_uselessFromFunction = ReturnType<typeof addPostAC>
 
-export const addPostAC = (text: string): AddPostT => {
+// export const addPostAC = (text: string): AddPostT => {
+//     return {
+//         type: ADD_POST,
+//         text: text
+//     }
+// }
+
+export const addPostAC = (): AddPostT => {
     return {
-        type: ADD_POST,
-        text: text
+        type: ADD_POST
     }
 }
+
 
 export const updateNewPostTextAC = (text: string): UpdateNewPostTextT => {
     return {
