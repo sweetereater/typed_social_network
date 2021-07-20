@@ -11,7 +11,7 @@ type DialogsPropsType = {
     onNewMessageTextChange: (text: string) => void
 }
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+const Dialogs = (props: DialogsPropsType) => {
 
     const dialogsView = props.dialogsPage.dialogsData.map(dialog => {
 

@@ -1,3 +1,4 @@
+import { KeyboardEvent } from 'react';
 import s from './NewMessage.module.css';
 import { ChangeEvent } from 'react';
 import { Button } from '@material-ui/core';
@@ -19,11 +20,18 @@ const NewMessageInput: React.FC<NewMessagePropsType> = (props) => {
         props.addNewMessage();
     }
 
+    const handleKeyInputKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            props.addNewMessage();
+        }
+    }
+
     return (
         <div className={s.newMessage}>
             <input
                 value={props.value}
                 onChange={handleChange}
+                onKeyPress={handleKeyInputKeyPress}
             />
             <Button onClick={handleClick}> &gt; </Button>
         </div>

@@ -39,17 +39,15 @@ const initialState = {
 
 
 const dialogsReducer = (state: DialogsPagePropsType = initialState, action: ActionTypes): DialogsPagePropsType => {
-    // if (action === undefined) return state;
     switch (action.type) {
         case CHANGE_ACTIVE_DIALOG:
 
-            const newActiveAuthor = state.dialogsData.find(dialog => dialog.id === action.authorId);
-            state.activeDialog = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
-            return state;
+            let newActiveAuthor = state.dialogsData.find(dialog => dialog.id === action.authorId);
+            newActiveAuthor = newActiveAuthor ? newActiveAuthor : { id: 1, name: "Nadya" };
+            return { ...state, activeDialog: newActiveAuthor };
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText;
-            return state;
+            return { ...state, newMessageText: action.newMessageText };
 
         case ADD_NEW_MESSAGE:
             const newMsg = {
@@ -57,10 +55,12 @@ const dialogsReducer = (state: DialogsPagePropsType = initialState, action: Acti
                 authorId: state.activeDialog.id,
                 text: state.newMessageText,
             }
-            state.messages = [...state.messages, newMsg];
-            state.newMessageText = "";
+            return {
+                ...state,
+                messages: [...state.messages, newMsg],
+                newMessageText: ""
+            };
 
-            return state;
         default:
             return state;
     }

@@ -12,8 +12,6 @@ type MyPostsPropsType = {
 
 const MyPostsContainer: React.FC<MyPostsPropsType> = (props) => {
 
-    console.log('Inside container ');
-
     const handleClick = () => {
         props.dispatch(addPostAC(props.newPostText));
     }

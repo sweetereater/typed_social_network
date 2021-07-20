@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, KeyboardEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import { PostType } from '../../redux/stateTypes'
@@ -32,6 +32,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         props.inputChange(newText);
     }
 
+    const handleInputKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === "Enter") {
+            props.addNewPost();
+        }
+    }
+
     return (
         <div className={s.posts}>
             <div>
@@ -40,6 +46,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                         color="primary"
                         value={props.newPostText}
                         onChange={handleInputChange}
+                        onKeyPress={handleInputKeyPress}
                     />
                 </div>
 

@@ -12,7 +12,7 @@ const App: React.FC<AppStatePropsType> = (props) => {
     profilePage={props.state.profilePage}
     dispatch={props.dispatch}
   />;
-
+  console.log(props.state.dialogsPage.messages);
   return (
     <Router>
       <div className="App">

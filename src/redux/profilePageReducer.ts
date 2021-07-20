@@ -55,27 +55,25 @@ const initialState = {
 };
 
 const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
-    // if (action === undefined) return initialState;
     switch (action.type) {
         case ADD_POST:
-            if (action.text) {
-                const randomNum = Math.floor(Math.random() * 100)
-                const newPost: PostType = {
-                    id: state.posts.length + 1,
-                    text: action.text,
-                    likesCount: 0,
-                    imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
-                }
-
-                state.posts.push(newPost);
-                state.newPostText = "";
+            const randomNum = Math.floor(Math.random() * 100)
+            const newPost: PostType = {
+                id: state.posts.length + 1,
+                text: action.text,
+                likesCount: 0,
+                imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
             }
 
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ""
+            };
 
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.text;
-            return state;
+            return { ...state, newPostText: action.text };
+
         default:
             return state;
     }
