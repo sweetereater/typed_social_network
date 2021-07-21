@@ -1,0 +1,31 @@
+.users {
+    background-color: rgb(194, 207, 231);
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+}
+
+.photoContainer{
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.toggleFollow {
+    margin-top: 5px;
+    padding: 5px;
+    color: white;
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+.userDescription {
+    text-align: center;
+    font-size: 1.8em;
+    width: 100%;
+}

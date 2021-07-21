@@ -5,6 +5,7 @@ import Profile from './Components/Profile/Profile';
 import AppStatePropsType from './redux/stateTypes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
+import UsersContainer from './Components/Users/UsersContainer';
 
 
 const App: React.FC = (props) => {
@@ -24,6 +25,9 @@ const App: React.FC = (props) => {
           </Route>
           <Route path='/messages'>
             <DialogsContainer />
+          </Route>
+          <Route path='/users'>
+            <UsersContainer />
           </Route>
         </Switch>
       </div>

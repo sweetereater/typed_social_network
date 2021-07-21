@@ -20,7 +20,7 @@ const Nav = () => {
             <div className={s.item}>
                 <Button
                     variant="outlined">
-                    <NavLink to="/news" activeClassName={s.active}>News</NavLink>
+                    <NavLink to="/users" activeClassName={s.active}>Users</NavLink>
                 </Button>
             </div>
             <div className={s.item}>
