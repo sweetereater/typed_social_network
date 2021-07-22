@@ -48,6 +48,12 @@ const initialState = {
             text: "Почти 40% пути, еее. Становится сложнее и интереснее",
             likesCount: 15,
             imgSrc: "http://www.thaicybergames.com/dota/images/heroes/12.jpg"
+        },
+        {
+            id: 7,
+            text: "50% позади!",
+            likesCount: 19,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/23.jpg"
         }
 
     ],

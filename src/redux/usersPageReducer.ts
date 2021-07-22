@@ -2,13 +2,17 @@ const TOGGLE_FOLLOW = "TOGGLE-FOLLOW";
 const LOAD_USERS = "LOAD-USERS";
 
 export type UserType = {
-    id: number
     name: string
-    status: string
-    location: string
+    id: number
     followed: boolean
-    photo: string
+    status: undefined
+    uniqueUrlName: undefined
+    photos: {
+        small: string | undefined
+        large: string | undefined
+    }
 }
+
 
 export type UserPagePropsType = {
     users: Array<UserType>
