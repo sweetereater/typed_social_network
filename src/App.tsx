@@ -6,6 +6,7 @@ import AppStatePropsType from './redux/stateTypes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
+import UsersC from './Components/Users/UserClassC';
 
 
 const App: React.FC = (props) => {
