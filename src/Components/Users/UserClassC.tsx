@@ -23,7 +23,13 @@ interface UserCState {
 
 class UsersC extends React.Component<UserCProps, UserCState> {
 
-    getUsers = () => {
+    constructor(props: UserCProps) {
+        super(props);
+        console.log('Constructed');
+    }
+
+    componentDidMount() {
+        console.log('Mounted!');
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             const items: Array<UserType> = response.data.items;
 
@@ -31,30 +37,33 @@ class UsersC extends React.Component<UserCProps, UserCState> {
         });
     }
 
+    componentDidUpdate() {
+        console.log('Updated!');
+    }
+
     render() {
+        console.log('Rendered!')
+
         return (
-            <div>
-                <button onClick={this.getUsers}> Load users! </button>
-                <div className={s.users}>
-                    {
-                        this.props.users.map(user => {
-                            return (
-                                <div key={user.id} className={s.user}>
-                                    <div className={s.photoContainer}>
-                                        <img src={user.photos.small ? user.photos.small : userPhoto} alt="" />
-                                        <button onClick={() => this.props.toggleFollow(user.id)}
-                                            className={s.toggleFollow}>
-                                            {user.followed ? "Unfollow" : "Follow"}
-                                        </button>
-                                    </div>
-                                    <div className={s.userDescription}>
-                                        {user.name} <br />
-                                    </div>
+            <div className={s.users}>
+                {
+                    this.props.users.map(user => {
+                        return (
+                            <div key={user.id} className={s.user}>
+                                <div className={s.photoContainer}>
+                                    <img src={user.photos.small ? user.photos.small : userPhoto} alt="" />
+                                    <button onClick={() => this.props.toggleFollow(user.id)}
+                                        className={s.toggleFollow}>
+                                        {user.followed ? "Unfollow" : "Follow"}
+                                    </button>
                                 </div>
-                            )
-                        })
-                    }
-                </div>
+                                <div className={s.userDescription}>
+                                    {user.name} <br />
+                                </div>
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }
