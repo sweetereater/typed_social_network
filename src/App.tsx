@@ -2,12 +2,9 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import Profile from './Components/Profile/Profile';
-import AppStatePropsType from './redux/stateTypes';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import UsersC from './Components/Users/UserClassC';
-
 
 const App: React.FC = (props) => {
 

@@ -5,14 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import store from './redux/state';
 import store from './redux/redux-store';
-import { StateType } from './redux/stateTypes';
 import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <Provider store={store}>
     <App
-    // state={store.getState()}
-    // dispatch={store.dispatch}
     />
   </Provider>,
   document.getElementById('root')

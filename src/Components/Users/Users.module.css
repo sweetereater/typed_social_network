@@ -29,3 +29,16 @@
     font-size: 1.8em;
     width: 100%;
 }
+
+.pageButton{
+    cursor: pointer;
+    padding: 5px 12px;
+    margin: 2px;
+    color:white;
+    background-color: #5398f3;
+    
+}
+.selectedPage {
+    background-color: #3e4148;
+    color: white;
+}
