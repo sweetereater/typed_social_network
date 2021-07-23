@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux"
 import { loadUsersAC, toggleFollowAC, changeActivePageAC, changeLastPageAC, UserPagePropsType, UserType } from "../../redux/usersPageReducer";
 import { storeType } from "../../redux/redux-store";
-import Users from "./Users";
+import Users from "./UsersFromServer";
 
 
 
@@ -38,6 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         },
     }
 }
+
 
 const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 

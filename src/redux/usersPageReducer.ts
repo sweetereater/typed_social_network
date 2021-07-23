@@ -45,7 +45,7 @@ type userReducerActionType = ToggleFollowActionType | LoadUsersActionType | Chan
 const initialState = {
     users: [],
     activePage: 1,
-    lastPage: 5
+    lastPage: 21
 }
 
 const usersReducer = (state: UserPagePropsType = initialState, action: userReducerActionType) => {
