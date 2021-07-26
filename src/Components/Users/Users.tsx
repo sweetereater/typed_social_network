@@ -11,7 +11,6 @@ type UserPropsType = {
 }
 
 const Users = (props: UserPropsType) => {
-    console.log(props);
 
     const createPaginationButtons = (page: number, step: number, maxPage: number) => {
         const result = [];

@@ -26,7 +26,7 @@ class UsersFromServer extends React.Component<UserCProps, UserCState> {
             const items: Array<UserType> = response.data.items;
             this.props.loadUsers(items);
 
-            if (this.props.lastPage === 5) {
+            if (this.props.lastPage === 10) {
                 this.props.changeLastPage(response.data.totalCount);
             }
 

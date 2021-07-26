@@ -103,14 +103,14 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
 //     }
 // }
 
-export const addPostAC = (): AddPostT => {
+export const addNewPost = (): AddPostT => {
     return {
         type: ADD_POST
     }
 }
 
 
-export const updateNewPostTextAC = (text: string): UpdateNewPostTextT => {
+export const updateNewPostText = (text: string): UpdateNewPostTextT => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         text

@@ -67,21 +67,21 @@ const dialogsReducer = (state: DialogsPagePropsType = initialState, action: Acti
 }
 
 
-export const changeActiveDialogAC = (id: number): ChangeActiveDialogT => {
+export const changeActiveDialog = (id: number): ChangeActiveDialogT => {
     return {
         type: CHANGE_ACTIVE_DIALOG,
         authorId: id
     }
 }
 
-export const updateNewMessageTextAC = (text: string): UpdateNewMessageTextT => {
+export const updateNewMessageText = (text: string): UpdateNewMessageTextT => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
         newMessageText: text
     }
 }
 
-export const addNewMessageAC = (): AddNewMessageT => {
+export const addNewMessage = (): AddNewMessageT => {
     return {
         type: ADD_NEW_MESSAGE,
     }

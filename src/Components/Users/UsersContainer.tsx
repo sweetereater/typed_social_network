@@ -1,6 +1,5 @@
-import { Dispatch } from "redux";
 import { connect } from "react-redux"
-import { loadUsersAC, toggleFollowAC, changeActivePageAC, changeLastPageAC, UserPagePropsType, UserType } from "../../redux/usersPageReducer";
+import { loadUsers, toggleFollow, changeActivePage, changeLastPage, UserPagePropsType } from "../../redux/usersPageReducer";
 import { storeType } from "../../redux/redux-store";
 import Users from "./UsersFromServer";
 
@@ -14,32 +13,13 @@ const mapStateToProps = (state: storeType): UserPagePropsType => {
     }
 }
 
-
-type mapDispatchToPropsType = {
-    toggleFollow: (id: number) => void
-    loadUsers: (users: Array<UserType>) => void
-    changeActivePage: (page: number) => void
-    changeLastPage: (page: number) => void
+const dispatchProps = {
+    toggleFollow,
+    loadUsers,
+    changeActivePage,
+    changeLastPage
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-    return {
-        toggleFollow: (id) => {
-            dispatch(toggleFollowAC(id))
-        },
-        loadUsers: (users: Array<UserType>) => {
-            dispatch(loadUsersAC(users));
-        },
-        changeActivePage: (page: number) => {
-            dispatch(changeActivePageAC(page));
-        },
-        changeLastPage: (page: number) => {
-            dispatch(changeLastPageAC(page));
-        },
-    }
-}
-
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+const UsersContainer = connect(mapStateToProps, dispatchProps)(Users);
 
 export default UsersContainer

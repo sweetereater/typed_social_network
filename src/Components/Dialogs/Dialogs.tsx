@@ -8,7 +8,7 @@ type DialogsPropsType = {
     dialogsPage: DialogsPagePropsType
     changeActiveDialog: (id: number) => void
     addNewMessage: () => void
-    onNewMessageTextChange: (text: string) => void
+    updateNewMessageText: (text: string) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -30,7 +30,7 @@ const Dialogs = (props: DialogsPropsType) => {
         });
 
     return (
-        <div className={s.dialogs}>
+        <div className={s.dialogs} >
             <div className={s.dialogsItems}>
                 {dialogsView}
             </div>
@@ -39,7 +39,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 <NewMessageInput
                     value={props.dialogsPage.newMessageText}
                     addNewMessage={props.addNewMessage}
-                    onNewMessageTextChange={props.onNewMessageTextChange}
+                    onNewMessageTextChange={props.updateNewMessageText}
                 />
             </div>
         </div>

@@ -45,7 +45,7 @@ type userReducerActionType = ToggleFollowActionType | LoadUsersActionType | Chan
 const initialState = {
     users: [],
     activePage: 1,
-    lastPage: 21
+    lastPage: 10
 }
 
 const usersReducer = (state: UserPagePropsType = initialState, action: userReducerActionType) => {
@@ -73,28 +73,28 @@ const usersReducer = (state: UserPagePropsType = initialState, action: userReduc
     }
 }
 
-export const loadUsersAC = (users: Array<UserType>) => {
+export const loadUsers = (users: Array<UserType>) => {
     return {
         type: LOAD_USERS,
         users: users
     }
 }
 
-export const toggleFollowAC = (userID: number) => {
+export const toggleFollow = (userID: number) => {
     return {
         type: TOGGLE_FOLLOW,
         id: userID
     }
 }
 
-export const changeActivePageAC = (page: number) => {
+export const changeActivePage = (page: number) => {
     return {
         type: CHANGE_ACTIVE_PAGE,
         page: page
     }
 }
 
-export const changeLastPageAC = (page: number) => {
+export const changeLastPage = (page: number) => {
     return {
         type: CHANGE_LAST_PAGE,
         page: page

@@ -9,7 +9,7 @@ type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
     addNewPost: () => void
-    inputChange: (text: string) => void
+    updateNewPostText: (text: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -29,7 +29,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget.value;
-        props.inputChange(newText);
+        props.updateNewPostText(newText);
     }
 
     const handleInputKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
