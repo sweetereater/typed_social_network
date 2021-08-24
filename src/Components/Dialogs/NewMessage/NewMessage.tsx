@@ -17,7 +17,10 @@ const NewMessageInput: React.FC<NewMessagePropsType> = (props) => {
     }
 
     const handleClick = () => {
-        props.addNewMessage();
+        if (props.value) {
+            props.addNewMessage();
+        }
+
     }
 
     const handleKeyInputKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {

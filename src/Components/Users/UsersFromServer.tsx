@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserType } from '../../redux/usersPageReducer';
+import { UserType, initialState } from '../../redux/usersPageReducer';
 import axios from 'axios';
 import Users from './Users';
 
@@ -22,19 +22,21 @@ interface UserCState {
 class UsersFromServer extends React.Component<UserCProps, UserCState> {
 
     loadUsers = (page: number) => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=3`).then(response => {
-            const items: Array<UserType> = response.data.items;
-            this.props.loadUsers(items);
+        console.log('changes v2!')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=3`)
+            .then(response => response.data)
+            .then(data => {
 
-            if (this.props.lastPage === 10) {
-                this.props.changeLastPage(response.data.totalCount);
-            }
+                this.props.loadUsers(data.items);
 
-        });
-    }
+                if (this.props.lastPage === initialState.lastPage) {
+                    this.props.changeLastPage(data.totalCount);
+                }
+            })
+
+    };
 
     componentDidMount() {
-        console.log('Mounted!');
         this.loadUsers(this.props.activePage);
     }
 

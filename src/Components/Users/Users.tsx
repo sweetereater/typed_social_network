@@ -24,7 +24,7 @@ const Users = (props: UserPropsType) => {
 
     const getPaginationButtons = () => {
         return (
-            createPaginationButtons(props.activePage, 4, props.lastPage).map(item => {
+            createPaginationButtons(props.activePage, 3, props.lastPage).map(item => {
                 const classes = props.activePage === item ? `${s.pageButton} ${s.selectedPage}` : `${s.pageButton}`;
                 return <button
                     key={item}
@@ -38,28 +38,31 @@ const Users = (props: UserPropsType) => {
     }
 
     return (
-        <div className={s.users}>
+        <div className={s.usersContainer}>
             <div className={s.paginationPanel}>
                 {getPaginationButtons()}
             </div>
-            {
-                props.users.map(user => {
-                    return (
-                        <div key={user.id} className={s.user}>
-                            <div className={s.photoContainer}>
-                                <img src={user.photos.small ? user.photos.small : userPhoto} alt="" />
-                                <button onClick={() => props.toggleFollow(user.id)}
-                                    className={s.toggleFollow}>
-                                    {user.followed ? "Unfollow" : "Follow"}
-                                </button>
+            <div className={s.users}>
+                {
+                    props.users.map(user => {
+                        return (
+                            <div key={user.id} className={s.user}>
+                                <div className={s.photoContainer}>
+                                    <img className={s.userPhoto} src={user.photos.small ? user.photos.small : userPhoto} alt="" />
+                                    <button onClick={() => props.toggleFollow(user.id)}
+                                        className={s.toggleFollowButton}>
+                                        {user.followed ? "Unfollow" : "Follow"}
+                                    </button>
+                                </div>
+                                <div className={s.userDescription}>
+                                    {user.name}
+                                </div>
                             </div>
-                            <div className={s.userDescription}>
-                                {user.name} <br />
-                            </div>
-                        </div>
-                    )
-                })
-            }
+                        )
+                    })
+                }
+            </div>
+
         </div>
     )
 

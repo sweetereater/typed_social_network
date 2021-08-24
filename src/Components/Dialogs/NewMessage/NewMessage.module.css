@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(130, 158, 190, 0.8);
+    /* background-color: rgb(4, 75, 156); */
 }
 .newMessageInput {
     outline: none;

@@ -42,10 +42,10 @@ type ChangeLastPageActionType = {
 
 type userReducerActionType = ToggleFollowActionType | LoadUsersActionType | ChangeActivePageActionType | ChangeLastPageActionType
 
-const initialState = {
+export const initialState = {
     users: [],
     activePage: 1,
-    lastPage: 10
+    lastPage: 4
 }
 
 const usersReducer = (state: UserPagePropsType = initialState, action: userReducerActionType) => {

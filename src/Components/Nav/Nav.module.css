@@ -1,10 +1,16 @@
-.nav {
+
+.navContainer {
     grid-area: n;
     background-color:rgba(122, 136, 151, 0.2);
-  }
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+}
 
 .nav_item {
-  color: rgb(37, 7, 202);
+  color: black;
   display: block;
   padding: 1rem;
   text-align: center;
@@ -20,3 +26,4 @@
   color: white;
   background-color: rgb(4, 75, 156);
 }
+
