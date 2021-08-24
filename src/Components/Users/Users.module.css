@@ -1,8 +1,11 @@
-.usersContainer {
+.userPage {
     background-color: rgba(122, 136, 151, 0.2);
-    padding: 1rem;
     border-left: 1px solid grey;
     border-right: 1px solid grey;
+}
+
+.usersContainer {
+    padding: 1rem;    
 }
 
 .paginationPanel {
@@ -10,49 +13,10 @@
     display: flex;
 }
 
-.user {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-    padding: 5px;
-    border-bottom: 1px solid black;
-}
+
 
 .users {
     margin-top: 2.5rem;
-}
-
-.photoContainer{
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-}
-
-.userPhoto {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
-
-.toggleFollowButton {
-    margin: 0.5rem 0;
-    padding: 10px;
-    color: white;
-    border-radius: 12px;
-    border: none;
-    background-color: rgba(4, 75, 156, 0.8);
-    cursor: pointer;
-}
-
-.toggleFollowButton:hover {
-    background-color: rgb(4, 75, 156);
-}
-
-.userDescription {
-    font-size: 1.8em;
-    margin-left: 3rem;
-    width: 100%;
 }
 
 .pageButton{
@@ -74,4 +38,8 @@
 .selectedPage {
     background-color: #3e4148;
     color: white;
+}
+
+.preloaderImage {
+    width: 100%;
 }

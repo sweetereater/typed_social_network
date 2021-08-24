@@ -1,7 +1,8 @@
 const TOGGLE_FOLLOW = "UserPage/TOGGLE-FOLLOW";
 const LOAD_USERS = "UserPage/LOAD-USERS";
-const CHANGE_ACTIVE_PAGE = "UserPage/CHANGE-ACTIVE-PAGE"
-const CHANGE_LAST_PAGE = "UserPage/CHANGE-LAST-PAGE"
+const CHANGE_ACTIVE_PAGE = "UserPage/CHANGE-ACTIVE-PAGE";
+const CHANGE_LAST_PAGE = "UserPage/CHANGE-LAST-PAGE";
+const SET_FETCHING = "UserPage/SET_FETCHING";
 
 export type UserType = {
     name: string
@@ -20,6 +21,7 @@ export type UserPagePropsType = {
     users: Array<UserType>
     activePage: number
     lastPage: number
+    isFetching: boolean
 }
 
 type ToggleFollowActionType = {
@@ -39,13 +41,19 @@ type ChangeLastPageActionType = {
     page: number
 }
 
+type SetFetchingActionType = {
+    type: typeof SET_FETCHING
+    status: boolean
+}
 
-type userReducerActionType = ToggleFollowActionType | LoadUsersActionType | ChangeActivePageActionType | ChangeLastPageActionType
+
+type userReducerActionType = ToggleFollowActionType | LoadUsersActionType | ChangeActivePageActionType | ChangeLastPageActionType | SetFetchingActionType
 
 export const initialState = {
     users: [],
     activePage: 1,
-    lastPage: 4
+    lastPage: 4,
+    isFetching: false
 }
 
 const usersReducer = (state: UserPagePropsType = initialState, action: userReducerActionType) => {
@@ -66,6 +74,11 @@ const usersReducer = (state: UserPagePropsType = initialState, action: userReduc
             return {
                 ...state,
                 lastPage: action.page
+            }
+        case SET_FETCHING:
+            return {
+                ...state,
+                isFetching: action.status
             }
 
         default:
@@ -98,6 +111,13 @@ export const changeLastPage = (page: number) => {
     return {
         type: CHANGE_LAST_PAGE,
         page: page
+    }
+}
+
+export const setFetchingStatus = (status: boolean) => {
+    return {
+        type: SET_FETCHING,
+        status
     }
 }
 

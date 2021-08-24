@@ -2,15 +2,15 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import ProfileContainer from './Components/Profile/ProfileContainer';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import Profile from './Components/Profile/Profile';
+import UserPage from './Components/UserPage/UserPage';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 const App: React.FC = (props) => {
 
-  const profilePage = <Profile />
-  // const profilePage = <ProfileContainer />;
+  const profilePage = <ProfileContainer />;
 
   return (
     <Router>
@@ -32,6 +32,10 @@ const App: React.FC = (props) => {
 
           <Route path='/users'>
             <UsersContainer />
+          </Route>
+
+          <Route path='/user/2'>
+            <UserPage />
           </Route>
 
         </Switch>

@@ -19,8 +19,6 @@ export type UpdateNewPostTextT = {
     text: string
 }
 
-type ProfileReducerActionsType = AddPostT | UpdateNewPostTextT
-
 
 const initialState = {
     posts: [
@@ -71,6 +69,12 @@ const initialState = {
             text: "60% (27.07)!",
             likesCount: 24,
             imgSrc: "http://www.thaicybergames.com/dota/images/heroes/48.jpg"
+        },
+        {
+            id: 9,
+            text: "59 выпуск, (24.08.21)... comeback :)",
+            likesCount: 20,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/52.jpg"
         }
 
     ],

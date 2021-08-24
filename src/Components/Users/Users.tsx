@@ -1,6 +1,7 @@
 import s from './Users.module.css';
 import userPhoto from '../../assets/images/kitty.jpg';
 import { UserType } from '../../redux/usersPageReducer';
+import User from './User/User';
 
 type UserPropsType = {
     users: Array<UserType>
@@ -45,20 +46,14 @@ const Users = (props: UserPropsType) => {
             <div className={s.users}>
                 {
                     props.users.map(user => {
-                        return (
-                            <div key={user.id} className={s.user}>
-                                <div className={s.photoContainer}>
-                                    <img className={s.userPhoto} src={user.photos.small ? user.photos.small : userPhoto} alt="" />
-                                    <button onClick={() => props.toggleFollow(user.id)}
-                                        className={s.toggleFollowButton}>
-                                        {user.followed ? "Unfollow" : "Follow"}
-                                    </button>
-                                </div>
-                                <div className={s.userDescription}>
-                                    {user.name}
-                                </div>
-                            </div>
-                        )
+                        return <User
+                            key={user.id}
+                            id={user.id}
+                            name={user.name}
+                            followed={user.followed}
+                            photos={user.photos}
+                            toggleFollow={props.toggleFollow}
+                        />
                     })
                 }
             </div>
