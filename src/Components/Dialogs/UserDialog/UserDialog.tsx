@@ -16,9 +16,13 @@ const UserDialog: React.FC<UserDialogType> = (props) => {
     const path = `/messages/${props.id}`;
 
     return (
-        <div className={s.userDialog} onClick={handleClick}>
-            <NavLink activeClassName={s.activeDialog} to={path}>{props.name}</NavLink>
-        </div>
+        <NavLink
+            className={s.userDialog}
+            onClick={handleClick}
+            activeClassName={s.activeDialog}
+            to={path}>
+            {props.name}
+        </NavLink>
     )
 }
 

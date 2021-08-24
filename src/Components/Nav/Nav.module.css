@@ -1,18 +1,22 @@
 .nav {
     grid-area: n;
-    background-color: rgb(157, 226, 231);
+    background-color:rgba(171, 206, 247, 0.8);
   }
 
-.item {
-  padding: 20px;
-  color:darkblue;
-  cursor: pointer;
-}
-
-.item a {
+.nav_item {
+  color: rgb(37, 7, 202);
+  display: block;
+  padding: 1rem;
+  text-align: center;
   text-decoration: none;
 }
 
+.nav_item:hover {
+  background-color: rgb(149, 191, 240);
+  color: white;
+}
+
 .active {
-  color:mediumblue
+  color: white;
+  background-color: rgb(4, 75, 156);
 }

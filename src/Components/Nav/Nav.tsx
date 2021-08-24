@@ -5,30 +5,10 @@ import { Button } from '@material-ui/core';
 const Nav = () => {
     return (
         <nav className={s.nav}>
-            <div className={s.item}>
-                <Button
-                    variant="outlined">
-                    <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
-                </Button>
-            </div>
-            <div className={s.item}>
-                <Button
-                    variant="outlined">
-                    <NavLink to="/messages" activeClassName={s.active}>Messages</NavLink>
-                </Button>
-            </div>
-            <div className={s.item}>
-                <Button
-                    variant="outlined">
-                    <NavLink to="/users" activeClassName={s.active}>Users</NavLink>
-                </Button>
-            </div>
-            <div className={s.item}>
-                <Button
-                    variant="outlined">
-                    <NavLink to="/music" activeClassName={s.active}>Music</NavLink>
-                </Button>
-            </div>
+            <NavLink className={s.nav_item} to="/profile" activeClassName={s.active}>Profile</NavLink>
+            <NavLink className={s.nav_item} to="/messages" activeClassName={s.active}>Messages</NavLink>
+            <NavLink className={s.nav_item} to="/users" activeClassName={s.active}>Users</NavLink>
+            <NavLink className={s.nav_item} to="/music" activeClassName={s.active}>Music</NavLink>
         </nav>
     )
 }

@@ -1,25 +1,22 @@
 .userDialog {
-    background-color: azure;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
+    box-sizing: border-box;
+    display: block;
     text-align: center;
-    cursor: pointer;
-    background-color: rgb(127, 158, 218);
+    text-decoration: none;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid lightgrey;
+    font-weight: bold;
+    color: black;
+    
 }
 .userDialog:hover {
-    color: white;
-    background-color: rgb(69, 103, 172);
+    background-color: rgb(235, 237, 240);
     transition: all 0.5s;
 }
 
-.userDialog a {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-}
-
 .activeDialog {
-    color:white
+    color:white;
+    background-color: rgb(130, 158, 190);
 }
 

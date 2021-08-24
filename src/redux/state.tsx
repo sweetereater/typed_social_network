@@ -8,6 +8,7 @@ import {
 import profileReducer from './profilePageReducer';
 import dialogsReducer from './dialogsPageReducer';
 
+// Old state (without Redux and react-redux)
 const store: StoreType = {
     _state: {
         profilePage: {

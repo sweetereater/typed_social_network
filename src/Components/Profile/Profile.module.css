@@ -1,11 +1,12 @@
 .main {
     grid-area: c;
-    background-color: rgb(194, 207, 231);
+    background-color: rgb(157, 189, 248);
 }
 
 .main__img {
     display: block;
     width: 100%;
+    
 }
 
 .profile_info {

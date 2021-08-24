@@ -1,15 +1,26 @@
 import {
     ProfilePagePropsType,
     PostType,
-    ActionTypes,
-    AddPostT,
-    UpdateNewPostTextT
+    ActionTypes
 } from './stateTypes';
 
-import {
-    ADD_POST,
-    UPDATE_NEW_POST_TEXT
-} from './stateTypes';
+
+
+const ADD_POST = "Profile/ADD-NEW-MESSAGE";
+const UPDATE_NEW_POST_TEXT = "Profile/UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "Profile/SET-USER-PROFILE";
+
+export type AddPostT = {
+    type: typeof ADD_POST
+}
+
+export type UpdateNewPostTextT = {
+    type: typeof UPDATE_NEW_POST_TEXT
+    text: string
+}
+
+type ProfileReducerActionsType = AddPostT | UpdateNewPostTextT
+
 
 const initialState = {
     posts: [
@@ -54,10 +65,17 @@ const initialState = {
             text: "50% позади!",
             likesCount: 19,
             imgSrc: "http://www.thaicybergames.com/dota/images/heroes/23.jpg"
+        },
+        {
+            id: 8,
+            text: "60% (27.07)!",
+            likesCount: 24,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/48.jpg"
         }
 
     ],
-    newPostText: "it-kamasutra :)"
+    newPostText: "it-kamasutra :)",
+    profile: null
 };
 
 const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
@@ -82,6 +100,7 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
 
         case UPDATE_NEW_POST_TEXT:
             return { ...state, newPostText: action.text };
+
 
         default:
             return state;
@@ -114,6 +133,13 @@ export const updateNewPostText = (text: string): UpdateNewPostTextT => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         text
+    }
+}
+
+export const setUserProfile = (profile: any) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile: profile
     }
 }
 
