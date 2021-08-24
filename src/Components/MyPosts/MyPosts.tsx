@@ -2,7 +2,6 @@ import React, { ChangeEvent, KeyboardEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import { PostType } from '../../redux/stateTypes'
-import { Button, Input } from '@material-ui/core';
 
 
 type MyPostsPropsType = {
@@ -28,7 +27,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         props.addNewPost();
     }
 
-    const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newText = e.currentTarget.value;
         props.updateNewPostText(newText);
     }
@@ -40,27 +39,25 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     }
 
     return (
-        <div className={s.posts}>
-            <div>
-                <div className={s.addPostInput}>
-                    <Input
-                        color="primary"
-                        value={props.newPostText}
-                        onChange={handleInputChange}
-                        onKeyPress={handleInputKeyPress}
-                    />
-                </div>
-
-                <div className={s.addPostButton}>
-                    <Button
-                        onClick={handleClick}
-                        variant="contained"
-                        color="primary"
-                    >Add new post</Button>
-                </div>
+        <div className={s.postsContainer}>
+            <div className={s.newPostForm}>
+                <input
+                    className={s.addPostInput}
+                    value={props.newPostText}
+                    onChange={handleInputChange}
+                    onKeyPress={handleInputKeyPress}
+                    placeholder="What's new, friend?"
+                />
+                <button
+                    onClick={handleClick}
+                    className={s.addPostButton}>
+                    Add new post
+                </button>
             </div>
-            <h3>My Posts</h3>
-            {postView}
+
+            <h3 className={s.myPostsTitle}>My Posts</h3>
+
+            <div className={s.posts}>  {postView}  </div>
         </div>
     )
 }

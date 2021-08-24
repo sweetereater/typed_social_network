@@ -4,6 +4,6 @@
 .message {
     display: inline-block;
     padding: 10px;
-    background-color: cornflowerblue;
+    background-color: rgba(130, 158, 190, 0.8);
     border-radius: 10px;
 }

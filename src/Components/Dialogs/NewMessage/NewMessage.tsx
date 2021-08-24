@@ -1,7 +1,7 @@
 import { KeyboardEvent } from 'react';
 import s from './NewMessage.module.css';
 import { ChangeEvent } from 'react';
-import { Button } from '@material-ui/core';
+import { CaretRightFilled } from '@ant-design/icons';
 
 
 type NewMessagePropsType = {
@@ -29,11 +29,12 @@ const NewMessageInput: React.FC<NewMessagePropsType> = (props) => {
     return (
         <div className={s.newMessage}>
             <input
+                className={s.newMessageInput}
                 value={props.value}
                 onChange={handleChange}
                 onKeyPress={handleKeyInputKeyPress}
             />
-            <Button onClick={handleClick}> &gt; </Button>
+            <button className={s.newMessageSendButton} onClick={handleClick} > <CaretRightFilled /> </button>
         </div>
     )
 }

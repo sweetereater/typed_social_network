@@ -1,5 +1,6 @@
 import s from './Post.module.css';
 import { PostType } from '../../../redux/stateTypes';
+import { HeartFilled } from '@ant-design/icons';
 
 
 const Post = (props: PostType) => {
@@ -10,9 +11,13 @@ const Post = (props: PostType) => {
                 src={props.imgSrc}
                 alt=""
             />
-            {props.text}
-            <br />
-            Likes - {props.likesCount}
+            <div className={s.postDetails}>
+                {props.text}
+                <div className={s.likesCount}><HeartFilled /> {props.likesCount}  </div>
+
+            </div>
+
+
         </div>
     )
 }

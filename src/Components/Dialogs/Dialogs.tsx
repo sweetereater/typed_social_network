@@ -34,8 +34,10 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={s.dialogsItems}>
                 {dialogsView}
             </div>
-            <div className={s.messages}>
-                {messagesView}
+            <div className={s.messagesContainer}>
+                <div className={s.messages}>
+                    {messagesView}
+                </div>
                 <NewMessageInput
                     value={props.dialogsPage.newMessageText}
                     addNewMessage={props.addNewMessage}

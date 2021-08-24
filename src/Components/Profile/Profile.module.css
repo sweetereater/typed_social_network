@@ -1,41 +1,7 @@
 .main {
     grid-area: c;
-    background-color: rgb(157, 189, 248);
-}
-
-.main__img {
-    display: block;
-    width: 100%;
-    
-}
-
-.profile_info {
-    padding: 1px;
-    min-height: 150px;
-}
-.img_container {
-    height: 100px;
-    width: 100px;
-    background-color: khaki;
-    border-radius: 50%;
-    padding: 20px;
-    margin: 10px;
-    float: left;
-}
-
-.img_container__img {
-    width: 100%;
-    border-radius: 50%;
-}
-
-/* .profile_info::after {
-    content: "";
-    clear: both;
-    display: table;
-} */
-
-.desc {
-    float: left;
-    margin-left: 20px;
-    color: white;
+    /* background-color: rgba(122, 136, 151, 0.2); */
+    padding: 1rem;
+    border-left: 1px solid rgb(136, 136, 136);
+    border-right: 1px solid rgb(136, 136, 136);
 }

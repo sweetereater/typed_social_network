@@ -1,5 +1,4 @@
 .dialogs {
-    background-color: rgb(194, 207, 231);
     display: grid;
     grid-template-columns: 3fr 7fr;
 }
@@ -8,12 +7,11 @@
     background-color: white;
 }
 
-/* .userDialog, .message {
-    margin: 10px;
-} */
-
-.messages {
-    padding: 10px;
+.messagesContainer {
     position: relative;
+    background-color: rgba(122, 136, 151, 0.2);
 }
 
+.messages {
+    padding: 0.8rem;
+}
