@@ -5,7 +5,7 @@ import axios from 'axios';
 import Users from './Users';
 import Preloader from '../Preloader/Preloader';
 
-interface UserCProps {
+interface IUserCProps {
     users: Array<UserType>
     activePage: number
     lastPage: number
@@ -23,7 +23,7 @@ interface UserCState {
 
 
 
-class UsersFromServer extends React.Component<UserCProps, UserCState> {
+class UsersFromServer extends React.Component<IUserCProps, UserCState> {
 
     loadUsers = (page: number) => {
 
@@ -36,7 +36,7 @@ class UsersFromServer extends React.Component<UserCProps, UserCState> {
             })
             .then(data => {
                 this.props.loadUsers(data.items);
-
+                console.log(data.items);
                 if (this.props.lastPage === initialState.lastPage) {
                     this.props.changeLastPage(data.totalCount);
                 }

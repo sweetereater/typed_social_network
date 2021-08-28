@@ -1,5 +1,4 @@
 import s from './Users.module.css';
-import userPhoto from '../../assets/images/kitty.jpg';
 import { UserType } from '../../redux/usersPageReducer';
 import User from './User/User';
 

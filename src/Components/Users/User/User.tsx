@@ -25,7 +25,7 @@ const User = (props: UserPropsType) => {
     return (
         <div className={s.user}>
             <div className={s.photoContainer}>
-                <NavLink to="/user/2">
+                <NavLink to={`/user/${id}`}>
                     <img className={s.userPhoto} src={small ? small : userPhoto} alt="" />
                 </NavLink>
                 <button onClick={() => props.toggleFollow(id)}

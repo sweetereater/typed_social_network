@@ -1,16 +1,16 @@
 import './App.css';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
-import ProfileContainer from './Components/Profile/ProfileContainer';
+import Profile from './Components/Profile/Profile';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import UserPage from './Components/UserPage/UserPage';
+import UserPage from './Components/UserPage/UserPageContainer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 const App: React.FC = (props) => {
 
-  const profilePage = <ProfileContainer />;
+  const profilePage = <Profile />;
 
   return (
     <Router>
@@ -34,7 +34,7 @@ const App: React.FC = (props) => {
             <UsersContainer />
           </Route>
 
-          <Route path='/user/2'>
+          <Route path='/user/:userId'>
             <UserPage />
           </Route>
 
