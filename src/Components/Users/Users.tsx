@@ -7,7 +7,7 @@ type UserPropsType = {
     activePage: number
     lastPage: number
     handleClick: (page: number) => void
-    toggleFollow: (id: number) => void
+    changeFollowStatus: (id: number, status: boolean) => void
 }
 
 const Users = (props: UserPropsType) => {
@@ -51,7 +51,7 @@ const Users = (props: UserPropsType) => {
                             name={user.name}
                             followed={user.followed}
                             photos={user.photos}
-                            toggleFollow={props.toggleFollow}
+                            changeFollowStatus={props.changeFollowStatus}
                         />
                     })
                 }

@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { loadUsers, toggleFollow, changeActivePage, changeLastPage, UserPagePropsType, setFetchingStatus } from "../../redux/usersPageReducer";
+import { loadUsers, changeFollowStatus, changeActivePage, changeLastPage, UserPagePropsType, setFetchingStatus } from "../../redux/usersPageReducer";
 import { storeType } from "../../redux/redux-store";
 import Users from "./UsersFromServer";
 
@@ -15,7 +15,7 @@ const mapStateToProps = (state: storeType): UserPagePropsType => {
 }
 
 const dispatchProps = {
-    toggleFollow,
+    changeFollowStatus,
     loadUsers,
     changeActivePage,
     changeLastPage,

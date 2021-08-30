@@ -1,4 +1,4 @@
-const TOGGLE_FOLLOW = "UserPage/TOGGLE-FOLLOW";
+const CHANGE_FOLLOW_STATUS = "UserPage/CHANGE_FOLLOW_STATUS";
 const LOAD_USERS = "UserPage/LOAD-USERS";
 const CHANGE_ACTIVE_PAGE = "UserPage/CHANGE-ACTIVE-PAGE";
 const CHANGE_LAST_PAGE = "UserPage/CHANGE-LAST-PAGE";
@@ -25,8 +25,9 @@ export type UserPagePropsType = {
 }
 
 type ToggleFollowActionType = {
-    type: typeof TOGGLE_FOLLOW
+    type: typeof CHANGE_FOLLOW_STATUS
     id: number
+    status: boolean
 }
 type LoadUsersActionType = {
     type: typeof LOAD_USERS
@@ -60,10 +61,10 @@ const usersReducer = (state: UserPagePropsType = initialState, action: userReduc
     switch (action.type) {
         case LOAD_USERS:
             return { ...state, users: [...action.users] }
-        case TOGGLE_FOLLOW:
+        case CHANGE_FOLLOW_STATUS:
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.id ? { ...user, followed: !user.followed } : user),
+                users: state.users.map(user => user.id === action.id ? { ...user, followed: action.status } : user),
             }
         case CHANGE_ACTIVE_PAGE:
             return {
@@ -93,10 +94,11 @@ export const loadUsers = (users: Array<UserType>) => {
     }
 }
 
-export const toggleFollow = (userID: number) => {
+export const changeFollowStatus = (userID: number, status: boolean) => {
     return {
-        type: TOGGLE_FOLLOW,
-        id: userID
+        type: CHANGE_FOLLOW_STATUS,
+        id: userID,
+        status
     }
 }
 

@@ -10,7 +10,7 @@ interface IUserCProps {
     activePage: number
     lastPage: number
     isFetching: boolean
-    toggleFollow: (id: number) => void
+    changeFollowStatus: (id: number, status: boolean) => void
     loadUsers: (users: Array<UserType>) => void
     changeActivePage: (page: number) => void
     changeLastPage: (page: number) => void
@@ -29,7 +29,7 @@ class UsersFromServer extends React.Component<IUserCProps, UserCState> {
 
         this.props.setFetchingStatus(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=3`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=3`, { withCredentials: true })
             .then(response => {
                 this.props.setFetchingStatus(false);
                 return response.data;
@@ -63,7 +63,7 @@ class UsersFromServer extends React.Component<IUserCProps, UserCState> {
                         activePage={this.props.activePage}
                         lastPage={this.props.lastPage}
                         handleClick={this.handleClick}
-                        toggleFollow={this.props.toggleFollow}
+                        changeFollowStatus={this.props.changeFollowStatus}
                     />
             }
         </div>

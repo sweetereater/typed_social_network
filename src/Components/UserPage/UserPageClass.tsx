@@ -28,7 +28,7 @@ class UserPageC extends React.Component<IUserProps & RouteComponentProps<MatchPa
 
         const userIdParam = this.props.match.params.userId;
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userIdParam}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userIdParam}`, { withCredentials: true }).then(response => {
 
             this.props.setFetchingStatus(false);
             this.props.loadUserProfileInfo(response.data);

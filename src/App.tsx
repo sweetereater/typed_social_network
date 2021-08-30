@@ -1,11 +1,12 @@
 import './App.css';
-import Header from './Components/Header/Header';
+// import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import Profile from './Components/Profile/Profile';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import UserPage from './Components/UserPage/UserPageContainer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import HeaderContainer from './Components/Header/HeaderContainer';
 
 
 const App: React.FC = (props) => {
@@ -15,7 +16,7 @@ const App: React.FC = (props) => {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <HeaderContainer />
         <Nav />
         <Switch>
           <Route exact path='/'>
