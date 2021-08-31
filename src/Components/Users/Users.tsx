@@ -7,7 +7,8 @@ type UserPropsType = {
     activePage: number
     lastPage: number
     handleClick: (page: number) => void
-    changeFollowStatus: (id: number, status: boolean) => void
+    followProgress: Array<number>
+    followUser: (id: number, followStatus: boolean) => void
 }
 
 const Users = (props: UserPropsType) => {
@@ -51,7 +52,8 @@ const Users = (props: UserPropsType) => {
                             name={user.name}
                             followed={user.followed}
                             photos={user.photos}
-                            changeFollowStatus={props.changeFollowStatus}
+                            followProgress={props.followProgress}
+                            followUser={props.followUser}
                         />
                     })
                 }

@@ -1,3 +1,6 @@
+import { Dispatch } from "redux";
+import { authAPI } from "../API/api";
+
 const SET_USER_DATA = 'authorization/SET_USER_DATA';
 const SET_FETCHING_STATUS = 'authorization/SET_FETCHING_STATUS';
 const SET_AUTH_STATUS = 'authorization/SET_AUTH_STATUS'
@@ -83,6 +86,13 @@ export const setAuthStatus = (authStatus: boolean): SetAuthorizationStatus => {
         type: SET_AUTH_STATUS,
         authStatus
     }
+}
+
+export const getAuthorizationStatus = () => (dispatch: Dispatch) => {
+    authAPI.isAuthorized().then(data => {
+        dispatch(setUserData(data))
+        dispatch(setAuthStatus(true))
+    })
 }
 
 

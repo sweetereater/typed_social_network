@@ -7,7 +7,7 @@ type UserPagePropsType = {
     profile: UserProfileType
 }
 
-const UserPage = (props: UserPagePropsType) => {
+const UserProfilePage = (props: UserPagePropsType) => {
     const {
         aboutMe,
         fullName,
@@ -39,4 +39,4 @@ const UserPage = (props: UserPagePropsType) => {
     )
 }
 
-export default UserPage;
+export default UserProfilePage;

@@ -1,8 +1,14 @@
-const CHANGE_FOLLOW_STATUS = "UserPage/CHANGE_FOLLOW_STATUS";
-const LOAD_USERS = "UserPage/LOAD-USERS";
-const CHANGE_ACTIVE_PAGE = "UserPage/CHANGE-ACTIVE-PAGE";
-const CHANGE_LAST_PAGE = "UserPage/CHANGE-LAST-PAGE";
-const SET_FETCHING = "UserPage/SET_FETCHING";
+import { Dispatch } from "redux";
+import { usersAPI } from "../API/api";
+import { storeType } from "./redux-store";
+
+const CHANGE_FOLLOW_STATUS = "usersPage/CHANGE_FOLLOW_STATUS";
+const LOAD_USERS = "usersPage/LOAD-USERS";
+const CHANGE_ACTIVE_PAGE = "usersPage/CHANGE-ACTIVE-PAGE";
+const CHANGE_LAST_PAGE = "usersPage/CHANGE-LAST-PAGE";
+const SET_FETCHING = "usersPage/SET_FETCHING";
+const TOGGLE_FOLLOW = "usersPage/TOGGLE_FOLLOW"
+
 
 export type UserType = {
     name: string
@@ -22,6 +28,7 @@ export type UserPagePropsType = {
     activePage: number
     lastPage: number
     isFetching: boolean
+    followProgress: Array<number>
 }
 
 type ToggleFollowActionType = {
@@ -47,14 +54,27 @@ type SetFetchingActionType = {
     status: boolean
 }
 
+type ToggleFollow = {
+    type: typeof TOGGLE_FOLLOW
+    status: boolean
+    id: number
+}
 
-type userReducerActionType = ToggleFollowActionType | LoadUsersActionType | ChangeActivePageActionType | ChangeLastPageActionType | SetFetchingActionType
+
+type userReducerActionType =
+    ToggleFollowActionType |
+    LoadUsersActionType |
+    ChangeActivePageActionType |
+    ChangeLastPageActionType |
+    SetFetchingActionType |
+    ToggleFollow
 
 export const initialState = {
     users: [],
     activePage: 1,
     lastPage: 4,
-    isFetching: false
+    isFetching: false,
+    followProgress: []
 }
 
 const usersReducer = (state: UserPagePropsType = initialState, action: userReducerActionType) => {
@@ -80,6 +100,13 @@ const usersReducer = (state: UserPagePropsType = initialState, action: userReduc
             return {
                 ...state,
                 isFetching: action.status
+            }
+        case TOGGLE_FOLLOW:
+            return {
+                ...state,
+                followProgress: state.followProgress.includes(action.id) ?
+                    state.followProgress.filter(id => id !== action.id) :
+                    [...state.followProgress, action.id]
             }
 
         default:
@@ -122,5 +149,50 @@ export const setFetchingStatus = (status: boolean) => {
         status
     }
 }
+
+export const toggleFollow = (id: number) => {
+    return {
+        type: TOGGLE_FOLLOW,
+        id,
+
+    }
+}
+
+// thunks 
+
+export const loadUsersTC = (page: number) => (dispatch: Dispatch, getState: () => storeType): void => {
+
+    const usersPage = getState().usersPage;
+
+    dispatch(setFetchingStatus(true));
+
+    usersAPI.getUsers(page).then(data => {
+
+        dispatch(setFetchingStatus(false));
+
+        dispatch(loadUsers(data.items));
+        if (data.totalCount !== usersPage.lastPage) {
+            dispatch(changeLastPage(data.totalCount))
+        }
+    })
+}
+
+export const followUser = (id: number, followStatus: boolean) => (dispatch: Dispatch) => {
+
+    const request = followStatus ? "followUser" : "unFollowUser"
+    dispatch(toggleFollow(id))
+
+    usersAPI[request](id)
+        .then(response => {
+            dispatch(toggleFollow(id))
+            if (response.data.resultCode === 0) {
+                dispatch(changeFollowStatus(id, followStatus))
+            }
+        })
+}
+
+
+
+
 
 export default usersReducer;

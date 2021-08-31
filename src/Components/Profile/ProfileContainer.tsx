@@ -20,9 +20,6 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state: storeType) => {
-    return {
-        biba: "boba",
-    }
 }
 
 const dispatchProps = {

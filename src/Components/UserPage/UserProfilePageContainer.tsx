@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import UserPageC from "./UserPageClass";
-import { UserProfileStateType, setFetchingStatus, loadUserProfileInfo, UserProfileType } from "../../redux/userProfileReducer";
+import UserProfilePageClass from "./UserProfilePageClass";
+import { loadUserProfileTC, UserProfileType } from "../../redux/userProfileReducer";
 import { storeType } from '../../redux/redux-store';
 
 type MapStateToPropsType = {
@@ -15,16 +15,10 @@ const mapStateToProps = (state: storeType): MapStateToPropsType => {
     }
 }
 
-type DispatchToPropsType = {
-    setFetchingStatus: (status: boolean) => void
-    loadUser: (profile: UserProfileType) => void
-}
-
 const dispatchToProps = {
-    setFetchingStatus,
-    loadUserProfileInfo
+    loadUserProfileTC
 }
 
-const UserPageProfileContainer = connect(mapStateToProps, dispatchToProps)(UserPageC);
+const UserPageProfileContainer = connect(mapStateToProps, dispatchToProps)(UserProfilePageClass);
 
 export default UserPageProfileContainer;

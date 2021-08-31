@@ -1,25 +1,24 @@
 import { connect } from "react-redux"
-import { loadUsers, changeFollowStatus, changeActivePage, changeLastPage, UserPagePropsType, setFetchingStatus } from "../../redux/usersPageReducer";
+import { UserPagePropsType, loadUsersTC, changeActivePage, changeLastPage, setFetchingStatus, followUser } from "../../redux/usersPageReducer";
 import { storeType } from "../../redux/redux-store";
 import Users from "./UsersFromServer";
-
-
 
 const mapStateToProps = (state: storeType): UserPagePropsType => {
     return {
         users: state.usersPage.users,
         activePage: state.usersPage.activePage,
         lastPage: state.usersPage.lastPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followProgress: state.usersPage.followProgress
     }
 }
 
 const dispatchProps = {
-    changeFollowStatus,
-    loadUsers,
     changeActivePage,
     changeLastPage,
-    setFetchingStatus
+    loadUsersTC,
+    setFetchingStatus,
+    followUser
 }
 
 const UsersContainer = connect(mapStateToProps, dispatchProps)(Users);

@@ -4,7 +4,7 @@ import Nav from './Components/Nav/Nav';
 import Profile from './Components/Profile/Profile';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import UserPage from './Components/UserPage/UserPageContainer';
+import UserPage from './Components/UserPage/UserProfilePageContainer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
 

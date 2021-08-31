@@ -1,3 +1,6 @@
+import { Dispatch } from "redux";
+import { usersAPI } from "../API/api";
+
 const SET_FETCHING_STATUS = "userProfilePage/SET_FETCHING_STATUS"
 const LOAD_USER_PROFILE_INFO = "userProfilePage/LOAD_USER_PROFILE_INFO"
 
@@ -69,6 +72,18 @@ export const loadUserProfileInfo = (profile: UserProfileType) => {
         payload: profile
     }
 }
+
+// thunks
+
+export const loadUserProfileTC = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(setFetchingStatus(true))
+    usersAPI.getUser(userId).then(response => {
+        dispatch(setFetchingStatus(false))
+        dispatch(loadUserProfileInfo(response.data))
+    })
+}
+
+
 
 
 export default userProfileReducer;

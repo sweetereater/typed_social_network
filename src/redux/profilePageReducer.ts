@@ -75,7 +75,14 @@ const initialState = {
             text: "59 выпуск, (24.08.21)... comeback :)",
             likesCount: 20,
             imgSrc: "http://www.thaicybergames.com/dota/images/heroes/52.jpg"
-        }
+        },
+        {
+            id: 10,
+            text: "65 выпуск, (31.08.21) all about redux-thunk",
+            likesCount: 17,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/84.jpg"
+        },
+
 
     ],
     newPostText: "it-kamasutra :)",
@@ -110,21 +117,6 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
             return state;
     }
 }
-
-// Action Creators (Lesson 39)
-
-// export type AddPostT_useless = {
-//     type: "ADD-POST"
-//     text: string
-// }
-// export type AddPostT_uselessFromFunction = ReturnType<typeof addPostAC>
-
-// export const addPostAC = (text: string): AddPostT => {
-//     return {
-//         type: ADD_POST,
-//         text: text
-//     }
-// }
 
 export const addNewPost = (): AddPostT => {
     return {
