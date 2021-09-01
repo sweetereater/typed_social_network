@@ -1,17 +1,14 @@
 import './App.css';
-// import Header from './Components/Header/Header';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
+import HeaderContainer from './Components/Header/HeaderContainer';
 import Nav from './Components/Nav/Nav';
-import Profile from './Components/Profile/Profile';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import UserPage from './Components/UserPage/UserProfilePageContainer';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import HeaderContainer from './Components/Header/HeaderContainer';
-
+import Profile from './Components/Profile/ProfilePageContainer';
+import Login from './Components/Login/Login';
 
 const App: React.FC = (props) => {
-
-  const profilePage = <Profile />;
 
   return (
     <Router>
@@ -19,12 +16,13 @@ const App: React.FC = (props) => {
         <HeaderContainer />
         <Nav />
         <Switch>
+
           <Route exact path='/'>
-            {profilePage}
+            <Redirect to='/profile/me' />
           </Route>
 
-          <Route path='/profile'>
-            {profilePage}
+          <Route path='/profile/:profileId'>
+            <Profile />
           </Route>
 
           <Route path='/messages'>
@@ -35,8 +33,8 @@ const App: React.FC = (props) => {
             <UsersContainer />
           </Route>
 
-          <Route path='/user/:userId'>
-            <UserPage />
+          <Route path='/login'>
+            <Login />
           </Route>
 
         </Switch>

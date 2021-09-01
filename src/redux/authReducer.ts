@@ -6,7 +6,7 @@ const SET_FETCHING_STATUS = 'authorization/SET_FETCHING_STATUS';
 const SET_AUTH_STATUS = 'authorization/SET_AUTH_STATUS'
 
 export type UserData = {
-    userId: number | null
+    id: number | null
     email: string
     login: string
 }
@@ -17,7 +17,7 @@ type AutorizationType = UserData & {
 }
 
 const initialState: AutorizationType = {
-    userId: null,
+    id: null,
     email: '',
     login: '',
     isFetching: false,
@@ -90,8 +90,11 @@ export const setAuthStatus = (authStatus: boolean): SetAuthorizationStatus => {
 
 export const getAuthorizationStatus = () => (dispatch: Dispatch) => {
     authAPI.isAuthorized().then(data => {
-        dispatch(setUserData(data))
-        dispatch(setAuthStatus(true))
+        if (data.resultCode === 0) {
+            dispatch(setUserData(data.data))
+            dispatch(setAuthStatus(true))
+        }
+
     })
 }
 

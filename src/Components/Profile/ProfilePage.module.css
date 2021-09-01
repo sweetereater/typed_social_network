@@ -1,0 +1,25 @@
+.profilePageContainer {   
+    grid-area: c;
+    border-left: 1px solid rgb(136, 136, 136);
+    border-right: 1px solid rgb(136, 136, 136);
+}
+
+.currentProfileContainer {
+    display: flex;
+    padding: 3rem;
+}
+
+.profilePhoto {
+    height: 20rem;
+    width: auto;
+}
+
+.profileInfoContainer {
+    margin-left: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileFullName {
+    border-bottom: 2px solid gray;
+}

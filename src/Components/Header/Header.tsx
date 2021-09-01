@@ -7,6 +7,7 @@ type HeaderPropsType = {
 }
 
 const Header = (props: HeaderPropsType) => {
+
     return (
         <header className={s.header}>
             <NavLink to='/'>
@@ -18,7 +19,7 @@ const Header = (props: HeaderPropsType) => {
             </NavLink>
             <div className={s.login}>
                 {
-                    props.isAuth ? props.login : <NavLink to='/login'> Login </NavLink>
+                    props.isAuth ? props.login : <NavLink to='/login'> Sign in </NavLink>
                 }
             </div>
         </header>

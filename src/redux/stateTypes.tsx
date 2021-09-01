@@ -35,12 +35,12 @@ export type StateType = {
 // Actions and Action Creators 
 
 // export const ADD_POST = "ADD-POST";
-export const ADD_POST = "Profile/ADD-NEW-MESSAGE";
-export const UPDATE_NEW_POST_TEXT = "Profile/UPDATE-NEW-POST-TEXT";
+export const ADD_POST = "Profile/ADD_NEW_MESSAGE";
+export const UPDATE_NEW_POST_TEXT = "Profile/UPDATE_NEW_POST_TEXT";
 
-export const CHANGE_ACTIVE_DIALOG = "Dialogs/CHANGE-ACTIVE-DIALOG";
-export const UPDATE_NEW_MESSAGE_TEXT = "Dialogs/UPDATE-NEW-MESSAGE-TEXT";
-export const ADD_NEW_MESSAGE = "Dialogs/ADD-NEW-MESSAGE";
+export const CHANGE_ACTIVE_DIALOG = "Dialogs/CHANGE_ACTIVE_DIALOG";
+export const UPDATE_NEW_MESSAGE_TEXT = "Dialogs/UPDATE_NEW_MESSAGE_TEXT";
+export const ADD_NEW_MESSAGE = "Dialogs/ADD_NEW_MESSAGE";
 
 export type AddPostT = {
     type: typeof ADD_POST

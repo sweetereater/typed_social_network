@@ -26,12 +26,20 @@ export const usersAPI = {
     getUser(userId) {
         return axiosInstance.get(`profile/${userId}`)
     }
+}
 
+export const profileAPI = {
+    getStatus(userId) {
+        return axiosInstance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status) {
+        return axiosInstance.put(`profile/status`, { status: status })
+    }
 }
 
 export const authAPI = {
     isAuthorized() {
-        return axiosInstance.get('auth/me').then(data => data.data.data);
+        return axiosInstance.get('auth/me').then(response => response.data);
     },
 }
 

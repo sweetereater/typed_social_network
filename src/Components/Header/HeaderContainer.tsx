@@ -29,7 +29,7 @@ class HeaderContainer extends React.Component<IHeaderContainerProps> {
 const mapStateToProps = (state: storeType) => (
     {
         isAuth: state.auth.isAuth,
-        login: state.auth.login
+        login: state.auth.login,
     }
 )
 

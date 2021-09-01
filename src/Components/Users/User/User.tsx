@@ -37,7 +37,7 @@ const User = (props: UserPropsType) => {
     return (
         <div className={s.user}>
             <div className={s.photoContainer}>
-                <NavLink to={`/user/${id}`}>
+                <NavLink to={`/profile/${id}`}>
                     <img className={s.userPhoto} src={small ? small : userPhoto} alt="" />
                 </NavLink>
                 <button disabled={isButtonInProgress} onClick={() => handleToggle(id)}

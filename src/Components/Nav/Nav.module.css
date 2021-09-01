@@ -22,8 +22,10 @@
   color: white;
 }
 
-.active {
+.active, .active:hover {
   color: white;
   background-color: rgb(4, 75, 156);
 }
+
+
 

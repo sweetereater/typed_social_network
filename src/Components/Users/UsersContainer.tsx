@@ -3,6 +3,9 @@ import { UserPagePropsType, loadUsersTC, changeActivePage, changeLastPage, setFe
 import { storeType } from "../../redux/redux-store";
 import Users from "./UsersFromServer";
 
+import { withAuthRedirect } from "../../HOC/withAuthRedirect";
+import { compose } from "redux";
+
 const mapStateToProps = (state: storeType): UserPagePropsType => {
     return {
         users: state.usersPage.users,
@@ -21,6 +24,10 @@ const dispatchProps = {
     followUser
 }
 
-const UsersContainer = connect(mapStateToProps, dispatchProps)(Users);
 
-export default UsersContainer
+const UsersContainer = compose(
+    withAuthRedirect,
+    connect(mapStateToProps, dispatchProps),
+)(Users);
+
+export default UsersContainer;

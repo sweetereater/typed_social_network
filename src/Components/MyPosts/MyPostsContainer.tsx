@@ -1,5 +1,5 @@
 import { PostType } from '../../redux/stateTypes'
-import { addNewPost, updateNewPostText } from '../../redux/profilePageReducer';
+import { addNewPost, updateNewPostText } from '../../redux/myPostsReducer';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 import { storeType } from '../../redux/redux-store';
@@ -11,8 +11,8 @@ type MapStateToPropsType = {
 
 const mapStateToProps = (state: storeType): MapStateToPropsType => {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        posts: state.myPosts.posts,
+        newPostText: state.myPosts.newPostText
     }
 }
 
