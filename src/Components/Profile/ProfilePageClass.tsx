@@ -5,6 +5,7 @@ import { ProfileType } from '../../redux/profilePageReducer';
 import { RouteComponentProps } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import s from './ProfilePage.module.css';
+import MyPostsContainer from '../MyPosts/MyPostsContainer';
 
 interface IUserProps {
     isFetching: boolean
@@ -51,15 +52,20 @@ class UserProfilePageClass extends React.Component<UserProfileClassProps, IUserS
 
     render() {
 
+        let id = this.props.id;
+        let profileId = Number(this.props.match.params.profileId);
         return (
             <div className={s.profilePageContainer}>
                 {this.props.isFetching ? <Preloader /> :
-                    <ProfilePage
-                        profile={this.props.profile}
-                        status={this.props.status}
-                        id={this.props.id}
-                        updateNewStatus={this.props.updateProfileStatusTC}
-                    />
+                    <>
+                        <ProfilePage
+                            profile={this.props.profile}
+                            status={this.props.status}
+                            id={this.props.id}
+                            updateNewStatus={this.props.updateProfileStatusTC}
+                        />
+                        {(!profileId || id === profileId) ? <MyPostsContainer /> : null}
+                    </>
                 }
             </div>
 

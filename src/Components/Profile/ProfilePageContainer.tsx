@@ -1,7 +1,9 @@
+import { compose } from "redux";
 import { connect } from "react-redux";
 import UserProfilePageClass from "./ProfilePageClass";
 import { loadUserProfileTC, getProfileStatusTC, updateProfileStatusTC, ProfileType } from "../../redux/profilePageReducer";
 import { storeType } from '../../redux/redux-store';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
 type MapStateToPropsType = {
     isFetching: boolean
@@ -25,6 +27,9 @@ const dispatchToProps = {
     updateProfileStatusTC,
 }
 
-const UserPageProfileContainer = connect(mapStateToProps, dispatchToProps)(UserProfilePageClass);
+const UserPageProfileContainer = compose(
+    withAuthRedirect,
+    connect(mapStateToProps, dispatchToProps))
+    (UserProfilePageClass)
 
 export default UserPageProfileContainer;

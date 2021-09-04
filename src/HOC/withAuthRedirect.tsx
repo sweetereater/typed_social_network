@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 
 export const withAuthRedirect = (Component: any) => {
+
     function Wrapper(props: MapStateToPropsType) {
         if (!props.isAuth) return <Redirect to='/login' />
         return <Component {...props} />
