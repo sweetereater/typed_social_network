@@ -24,7 +24,6 @@ export type DialogsPagePropsType = {
 }
 export type ProfilePagePropsType = {
     posts: Array<PostType>
-    newPostText: string
 }
 
 export type StateType = {

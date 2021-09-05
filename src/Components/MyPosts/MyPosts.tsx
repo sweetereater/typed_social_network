@@ -2,13 +2,12 @@ import React, { ChangeEvent, KeyboardEvent } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import { PostType } from '../../redux/stateTypes'
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 
 type MyPostsPropsType = {
     posts: Array<PostType>
-    newPostText: string
-    addNewPost: () => void
-    updateNewPostText: (text: string) => void
+    addNewPost: (text: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -23,40 +22,38 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         />
     })
 
-    const handleClick = () => {
-        props.addNewPost();
-    }
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const newText = e.currentTarget.value;
-        props.updateNewPostText(newText);
-    }
-
-    const handleInputKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === "Enter") {
-            props.addNewPost();
-        }
+    const addNewPost = (text: string) => {
+        props.addNewPost(text);
     }
 
     return (
         <div className={s.postsContainer}>
             <div className={s.newPostForm}>
-                <input
-                    className={s.addPostInput}
-                    value={props.newPostText}
-                    onChange={handleInputChange}
-                    onKeyPress={handleInputKeyPress}
-                    placeholder="What's new, friend?"
-                />
-                <button
-                    onClick={handleClick}
-                    className={s.addPostButton}>
-                    Add new post
-                </button>
+                <Formik
+                    initialValues={{ newPostText: '' }}
+                    validate={
+                        (values) => {
+                            let errors: any = {};
+                            if (!values.newPostText) {
+                                errors.newPostText = "Пожалуйста, введите текст сообщения"
+                            }
+                            return errors;
+                        }}
+                    onSubmit={(values) => {
+                        addNewPost(values.newPostText)
+                    }}
+                >
+                    {(props) => {
+                        return <Form>
+                            <Field className={s.addPostInput} name="newPostText" />
+                            <ErrorMessage name="newPostText" component="div" />
+                            <button className={s.addPostButton} >Add new post</button>
+                        </Form>
+                    }}
+                </Formik>
             </div>
 
             <h3 className={s.myPostsTitle}>My Posts</h3>
-
             <div className={s.posts}>  {postView}  </div>
         </div>
     )

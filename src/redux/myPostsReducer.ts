@@ -6,15 +6,10 @@ import {
 
 
 const ADD_POST = "Profile/ADD_NEW_MESSAGE";
-const UPDATE_NEW_POST_TEXT = "Profile/UPDATE_NEW_POST_TEXT";
 const SET_USER_STATUS = "Profile/SET_USER_STATUS";
 
 export type AddPostT = {
-    type: typeof ADD_POST
-}
-
-export type UpdateNewPostTextT = {
-    type: typeof UPDATE_NEW_POST_TEXT
+    type: typeof ADD_POST,
     text: string
 }
 
@@ -23,7 +18,7 @@ export type SetUserStatusT = {
     text: string
 }
 
-type ProfilePageReducerActionsType = AddPostT | UpdateNewPostTextT | SetUserStatusT
+type ProfilePageReducerActionsType = AddPostT
 
 
 const initialState = {
@@ -103,45 +98,28 @@ const initialState = {
 const myPostsReducer = (state: ProfilePagePropsType = initialState, action: ProfilePageReducerActionsType): ProfilePagePropsType => {
     switch (action.type) {
         case ADD_POST:
-            if (state.newPostText) {
-                const randomNum = Math.floor(Math.random() * 100)
-                const newPost: PostType = {
-                    id: state.posts.length + 1,
-                    text: state.newPostText,
-                    likesCount: 0,
-                    imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
-                }
-                return {
-                    ...state,
-                    posts: [...state.posts, newPost],
-                    newPostText: ""
-                };
+            const randomNum = Math.floor(Math.random() * 100)
+            const newPost: PostType = {
+                id: state.posts.length + 1,
+                text: action.text,
+                likesCount: 0,
+                imgSrc: `http://www.thaicybergames.com/dota/images/heroes/${randomNum}.jpg`
             }
-
-            return state;
-
-        case UPDATE_NEW_POST_TEXT:
-            return { ...state, newPostText: action.text };
-
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+            };
         default:
             return state;
     }
 }
 
-export const addNewPost = (): AddPostT => {
+export const addNewPost = (text: string): AddPostT => {
     return {
-        type: ADD_POST
-    }
-}
-
-
-export const updateNewPostText = (text: string): UpdateNewPostTextT => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
+        type: ADD_POST,
         text
     }
 }
-
 
 
 export default myPostsReducer;
