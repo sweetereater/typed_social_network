@@ -5,6 +5,7 @@ import myPostsReducer from "./myPostsReducer";
 import usersReducer from "./usersPageReducer";
 import profileReducer from "./profilePageReducer";
 import authReducer from './authReducer';
+import appReducer from "./appReducer";
 
 
 
@@ -13,7 +14,8 @@ let rootReducer = combineReducers({
     myPosts: myPostsReducer,
     usersPage: usersReducer,
     profilePage: profileReducer,
-    auth: authReducer
+    auth: authReducer,
+    app: appReducer
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk));

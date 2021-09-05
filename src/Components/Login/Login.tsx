@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { storeType } from '../../redux/redux-store';
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/authReducer';
-import { Divider } from '@material-ui/core';
 
 type LoginPropsType = {
     isAuth: boolean
