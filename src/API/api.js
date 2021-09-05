@@ -41,6 +41,14 @@ export const authAPI = {
     isAuthorized() {
         return axiosInstance.get('auth/me').then(response => response.data);
     },
+
+    logIn(email, password) {
+        return axiosInstance.post('auth/login', { email, password }).then(data => data.data);
+    },
+
+    logOut() {
+        return axiosInstance.delete('auth/login').then(data => data.data);
+    }
 }
 
 

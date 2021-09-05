@@ -46,3 +46,13 @@
     background-color: blue;
     color: white;
 }
+
+.error {
+    background-color: rgb(233, 120, 120);
+    border: 1px solid red;
+}
+
+.errorText {
+    color: red;
+    font-weight: bold;
+}

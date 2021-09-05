@@ -3,12 +3,17 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Redirect } from 'react-router-dom';
 import { storeType } from '../../redux/redux-store';
 import { connect } from 'react-redux';
+import { loginUser } from '../../redux/authReducer';
+import { Divider } from '@material-ui/core';
 
 type LoginPropsType = {
     isAuth: boolean
+    authError: string
+    loginUser: (email: string, password: string) => void
 }
 
 const Login = (props: LoginPropsType) => {
+
     if (props.isAuth) return <Redirect to='/' />
 
     return (
@@ -17,7 +22,7 @@ const Login = (props: LoginPropsType) => {
                 <div className={s.loginHeader}>Login, please</div>
 
                 <Formik
-                    initialValues={{ login: 'biba', password: 'boba' }}
+                    initialValues={{ login: '', password: '' }}
 
                     validate={(values) => {
                         const errors: any = {};
@@ -31,20 +36,33 @@ const Login = (props: LoginPropsType) => {
                     }}
 
                     onSubmit={(values, methods) => {
-                        console.log('Values from form -> ', values)
-                        console.log('Submiting...')
-                        console.log('Methods:', methods);
+                        props.loginUser(values.login, values.password);
+                        methods.resetForm();
+                        methods.setTouched({})
+                        methods.setErrors({})
                     }}
                 >
-                    {(props) => {
+                    {({ touched, errors, isSubmitting }) => {
+                        let loginStyles = `${s.formInput}`;
+                        let passwordStyles = `${s.formInput}`;
+
+                        console.log(errors);
+                        if (errors.login) loginStyles += ` ${s.error}`
+                        if (errors.password) passwordStyles += ` ${s.error}`
+
                         return <Form className={s.form}>
-                            <Field className={s.formInput} name="login" />
-                            <ErrorMessage name="login" component="div" />
-                            <Field className={s.formInput} name="password" type="password" />
-                            <ErrorMessage name="password" component="div" />
+
+                            <Field className={loginStyles} name="login" />
+                            {touched.login && errors.login && <ErrorMessage className={s.errorText} name="login" component="div" />}
+
+                            <Field className={passwordStyles} name="password" type="password" />
+                            {touched.password && errors.password && <ErrorMessage className={s.errorText} name="password" component="div" />}
+
                             <button className={s.loginSubmitButton} type="submit">
                                 Log in
                             </button>
+
+                            {props.authError && <div className={s.errorText}>{props.authError}</div>}
                         </Form>
                     }}
                 </Formik>
@@ -55,7 +73,12 @@ const Login = (props: LoginPropsType) => {
 }
 
 const mapStateToProps = (state: storeType) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    authError: state.auth.authError
 })
 
-export default connect(mapStateToProps)(Login);
+const dispatchToProps = {
+    loginUser
+}
+
+export default connect(mapStateToProps, dispatchToProps)(Login);

@@ -3,7 +3,8 @@ import s from './Header.module.css';
 
 type HeaderPropsType = {
     isAuth: boolean,
-    login: string
+    login: string,
+    logoutUser: () => void
 }
 
 const Header = (props: HeaderPropsType) => {
@@ -21,6 +22,8 @@ const Header = (props: HeaderPropsType) => {
                 {
                     props.isAuth ? props.login : <NavLink to='/login'> Sign in </NavLink>
                 }
+                {props.isAuth && <button className={s.logoutButton} onClick={props.logoutUser}>Exit</button>}
+
             </div>
         </header>
     )

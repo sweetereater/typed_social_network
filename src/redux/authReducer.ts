@@ -4,6 +4,7 @@ import { authAPI } from "../API/api";
 const SET_USER_DATA = 'authorization/SET_USER_DATA';
 const SET_FETCHING_STATUS = 'authorization/SET_FETCHING_STATUS';
 const SET_AUTH_STATUS = 'authorization/SET_AUTH_STATUS'
+const SET_AUTH_ERROR = 'authorization/SET_AUTH_ERROR'
 
 export type UserData = {
     id: number | null
@@ -14,6 +15,7 @@ export type UserData = {
 type AutorizationType = UserData & {
     isFetching: boolean
     isAuth: boolean
+    authError: string
 }
 
 const initialState: AutorizationType = {
@@ -21,7 +23,8 @@ const initialState: AutorizationType = {
     email: '',
     login: '',
     isFetching: false,
-    isAuth: false
+    isAuth: false,
+    authError: '',
 }
 
 type SetFetchingActionType = {
@@ -39,8 +42,13 @@ type SetAuthorizationStatus = {
     authStatus: boolean
 }
 
+type SetAuthErrorType = {
+    type: typeof SET_AUTH_ERROR
+    authError: string
+}
 
-type ActionsType = SetFetchingActionType | SetUserDataActionType | SetAuthorizationStatus
+
+type ActionsType = SetFetchingActionType | SetUserDataActionType | SetAuthorizationStatus | SetAuthErrorType
 
 const authReducer = (state: AutorizationType = initialState, action: ActionsType): AutorizationType => {
     switch (action.type) {
@@ -50,6 +58,7 @@ const authReducer = (state: AutorizationType = initialState, action: ActionsType
                 isFetching: action.status
             }
         case SET_USER_DATA:
+            console.log(action.payload);
             return {
                 ...state,
                 ...action.payload
@@ -59,7 +68,11 @@ const authReducer = (state: AutorizationType = initialState, action: ActionsType
                 ...state,
                 isAuth: action.authStatus
             }
-
+        case SET_AUTH_ERROR:
+            return {
+                ...state,
+                authError: action.authError
+            }
         default:
             return state;
     }
@@ -88,13 +101,41 @@ export const setAuthStatus = (authStatus: boolean): SetAuthorizationStatus => {
     }
 }
 
+export const setAuthError = (authError: string) => {
+    return {
+        type: SET_AUTH_ERROR,
+        authError
+    }
+}
+
 export const getAuthorizationStatus = () => (dispatch: Dispatch) => {
     authAPI.isAuthorized().then(data => {
         if (data.resultCode === 0) {
             dispatch(setUserData(data.data))
             dispatch(setAuthStatus(true))
+        } else {
+            dispatch(setAuthStatus(false))
         }
 
+    })
+}
+
+export const loginUser = (email: string, password: string) => (dispatch: any) => {
+    dispatch(setFetchingStatus(true));
+    authAPI.logIn(email, password).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setFetchingStatus(false));
+            dispatch(getAuthorizationStatus())
+        } else if (data.resultCode === 1) {
+            dispatch(setAuthError(data.messages[0]))
+        }
+
+    })
+}
+
+export const logoutUser = () => (dispatch: any) => {
+    authAPI.logOut().then(res => {
+        dispatch(getAuthorizationStatus())
     })
 }
 

@@ -6,15 +6,9 @@ import {
 
 
 const ADD_POST = "Profile/ADD_NEW_MESSAGE";
-const SET_USER_STATUS = "Profile/SET_USER_STATUS";
 
 export type AddPostT = {
     type: typeof ADD_POST,
-    text: string
-}
-
-export type SetUserStatusT = {
-    type: typeof SET_USER_STATUS,
     text: string
 }
 
@@ -89,10 +83,15 @@ const initialState = {
             likesCount: 13,
             imgSrc: "http://www.thaicybergames.com/dota/images/heroes/95.jpg"
         },
+        {
+            id: 12,
+            text: "78 выпуск, (05.09.21) +login-logout",
+            likesCount: 21,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/103.jpg"
+        }
 
 
-    ],
-    newPostText: "it-kamasutra :)",
+    ]
 };
 
 const myPostsReducer = (state: ProfilePagePropsType = initialState, action: ProfilePageReducerActionsType): ProfilePagePropsType => {

@@ -37,17 +37,23 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                             if (!values.newPostText) {
                                 errors.newPostText = "Пожалуйста, введите текст сообщения"
                             }
+                            if (values.newPostText && values.newPostText.length > 10) {
+                                errors.newPostText = "Длина сообщения не должна превышать 10 символов"
+                            }
                             return errors;
                         }}
-                    onSubmit={(values) => {
+                    onSubmit={(values, methods) => {
+                        methods.setFieldValue('newPostText', '');
+                        methods.setTouched({})
                         addNewPost(values.newPostText)
+
                     }}
                 >
                     {(props) => {
                         return <Form>
                             <Field className={s.addPostInput} name="newPostText" />
-                            <ErrorMessage name="newPostText" component="div" />
                             <button className={s.addPostButton} >Add new post</button>
+                            {props.touched.newPostText && props.errors.newPostText && <ErrorMessage className={s.errorMessage} name="newPostText" component="div" />}
                         </Form>
                     }}
                 </Formik>

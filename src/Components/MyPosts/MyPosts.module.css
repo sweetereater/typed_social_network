@@ -44,3 +44,7 @@
 .posts {
     margin: 3rem;
 }
+
+.errorMessage {
+    color: red;
+}
