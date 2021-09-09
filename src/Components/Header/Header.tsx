@@ -9,6 +9,12 @@ type HeaderPropsType = {
 
 const Header = (props: HeaderPropsType) => {
 
+    const {
+        isAuth,
+        login,
+        logoutUser
+    } = props;
+
     return (
         <header className={s.header}>
             <NavLink to='/'>
@@ -20,9 +26,9 @@ const Header = (props: HeaderPropsType) => {
             </NavLink>
             <div className={s.login}>
                 {
-                    props.isAuth ? props.login : <NavLink to='/login'> Sign in </NavLink>
+                    isAuth ? login : <NavLink to='/login'> Sign in </NavLink>
                 }
-                {props.isAuth && <button className={s.logoutButton} onClick={props.logoutUser}>Exit</button>}
+                {isAuth && <button className={s.logoutButton} onClick={logoutUser}>Exit</button>}
 
             </div>
         </header>

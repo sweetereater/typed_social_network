@@ -2,10 +2,12 @@ import React, { FocusEvent, ChangeEvent, useState } from 'react';
 import { ProfileType } from '../../redux/profilePageReducer';
 import s from './ProfilePage.module.css';
 import { InstagramOutlined, FacebookOutlined, YoutubeOutlined } from '@ant-design/icons'
+import photo from '../../assets/images/cat.jpg';
 
 interface IProfilePagePropsType {
     profile: ProfileType
     status: string
+    owner: boolean
     id: number | null
     updateNewStatus: (status: string) => void
 }
@@ -48,7 +50,7 @@ const ProfilePage = (props: IProfilePagePropsType) => {
 
     return (
         <div className={s.currentProfileContainer}>
-            <img className={s.profilePhoto} src={photos.large} alt={fullName} />
+            <img className={s.profilePhoto} src={photos.large || photo} alt={fullName} />
 
             <div className={s.profileInfoContainer}>
                 <div className={s.profileInfo}>

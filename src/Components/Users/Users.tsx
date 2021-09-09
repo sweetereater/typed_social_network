@@ -13,6 +13,16 @@ type UserPropsType = {
 
 const Users = (props: UserPropsType) => {
 
+    const {
+        activePage,
+        lastPage,
+        handleClick,
+        users,
+        followProgress,
+        followUser
+
+    } = props;
+
     const createPaginationButtons = (page: number, step: number, maxPage: number) => {
         const result = [];
         for (let i = page - step; i <= page + step; i++) {
@@ -25,11 +35,11 @@ const Users = (props: UserPropsType) => {
 
     const getPaginationButtons = () => {
         return (
-            createPaginationButtons(props.activePage, 3, props.lastPage).map(item => {
-                const classes = props.activePage === item ? `${s.pageButton} ${s.selectedPage}` : `${s.pageButton}`;
+            createPaginationButtons(activePage, 3, lastPage).map(item => {
+                const classes = activePage === item ? `${s.pageButton} ${s.selectedPage}` : `${s.pageButton}`;
                 return <button
                     key={item}
-                    onClick={() => props.handleClick(item)}
+                    onClick={() => handleClick(item)}
                     className={classes}>
                     {item}
                 </button>
@@ -45,15 +55,15 @@ const Users = (props: UserPropsType) => {
             </div>
             <div className={s.users}>
                 {
-                    props.users.map(user => {
+                    users.map(user => {
                         return <User
                             key={user.id}
                             id={user.id}
                             name={user.name}
                             followed={user.followed}
                             photos={user.photos}
-                            followProgress={props.followProgress}
-                            followUser={props.followUser}
+                            followProgress={followProgress}
+                            followUser={followUser}
                         />
                     })
                 }

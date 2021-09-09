@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import { getAuthorizationStatus, logoutUser } from '../../redux/authReducer';
+import { logoutUser } from '../../redux/authReducer';
 import { connect } from 'react-redux';
 import { storeType } from '../../redux/redux-store';
 
@@ -12,11 +12,6 @@ interface IHeaderContainerProps {
 }
 
 class HeaderContainer extends React.Component<IHeaderContainerProps> {
-
-    // componentDidMount() {
-    //     this.props.getAuthorizationStatus()
-    // }
-
     render() {
         const { isAuth, login } = this.props;
         return (

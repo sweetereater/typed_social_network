@@ -88,7 +88,13 @@ const initialState = {
             text: "78 выпуск, (05.09.21) +login-logout",
             likesCount: 21,
             imgSrc: "http://www.thaicybergames.com/dota/images/heroes/103.jpg"
-        }
+        },
+        {
+            id: 13,
+            text: "87 выпуск, (06.09.21) не ознакомился с библиотекой reselect(83 выпуск), пошел дальше",
+            likesCount: 18,
+            imgSrc: "http://www.thaicybergames.com/dota/images/heroes/109.jpg"
+        },
 
 
     ]

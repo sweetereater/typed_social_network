@@ -1,7 +1,8 @@
-import { Dispatch } from "react";
+// import { Dispatch } from "react";
 import { getAuthorizationStatus } from "./authReducer";
 
 const SET_INITIALIZED = 'app/SET_INITIALIZED'
+
 const initialState = {
     initialized: false
 }
@@ -30,7 +31,6 @@ export const setInitializedStatus = () => {
 
 export const getInitialized = () => (dispatch: any) => {
     dispatch(getAuthorizationStatus()).then(() => {
-        console.log('after getAuthorizationStatus')
         dispatch(setInitializedStatus())
     })
 }

@@ -13,7 +13,13 @@ type LoginPropsType = {
 
 const Login = (props: LoginPropsType) => {
 
-    if (props.isAuth) return <Redirect to='/' />
+    const {
+        isAuth,
+        authError,
+        loginUser
+    } = props;
+
+    if (isAuth) return <Redirect to='/' />
 
     return (
         <div className={s.outerContainer}>
@@ -35,17 +41,16 @@ const Login = (props: LoginPropsType) => {
                     }}
 
                     onSubmit={(values, methods) => {
-                        props.loginUser(values.login, values.password);
+                        loginUser(values.login, values.password);
                         methods.resetForm();
                         methods.setTouched({})
                         methods.setErrors({})
                     }}
                 >
-                    {({ touched, errors, isSubmitting }) => {
+                    {({ touched, errors }) => {
                         let loginStyles = `${s.formInput}`;
                         let passwordStyles = `${s.formInput}`;
 
-                        console.log(errors);
                         if (errors.login) loginStyles += ` ${s.error}`
                         if (errors.password) passwordStyles += ` ${s.error}`
 
@@ -61,7 +66,7 @@ const Login = (props: LoginPropsType) => {
                                 Log in
                             </button>
 
-                            {props.authError && <div className={s.errorText}>{props.authError}</div>}
+                            {authError && <div className={s.errorText}>{authError}</div>}
                         </Form>
                     }}
                 </Formik>

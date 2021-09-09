@@ -54,17 +54,20 @@ class UserProfilePageClass extends React.Component<UserProfileClassProps, IUserS
 
         let id = this.props.id;
         let profileId = Number(this.props.match.params.profileId);
+        const owner = (!profileId || id === profileId);
+
         return (
             <div className={s.profilePageContainer}>
                 {this.props.isFetching ? <Preloader /> :
                     <>
                         <ProfilePage
+                            owner={owner}
                             profile={this.props.profile}
                             status={this.props.status}
                             id={this.props.id}
                             updateNewStatus={this.props.updateProfileStatusTC}
                         />
-                        {(!profileId || id === profileId) ? <MyPostsContainer /> : null}
+                        {owner ? <MyPostsContainer /> : null}
                     </>
                 }
             </div>

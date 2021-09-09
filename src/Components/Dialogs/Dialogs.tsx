@@ -13,18 +13,25 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsView = props.dialogsPage.dialogsData.map(dialog => {
+    const {
+        dialogsPage,
+        changeActiveDialog,
+        addNewMessage,
+        updateNewMessageText
+    } = props;
+
+    const dialogsView = dialogsPage.dialogsData.map(dialog => {
 
         return <UserDialog
             key={dialog.id}
             id={dialog.id}
             name={dialog.name}
-            changeActiveDialog={props.changeActiveDialog}
+            changeActiveDialog={changeActiveDialog}
         />
     });
 
-    const messagesView = props.dialogsPage.messages
-        .filter(msg => { return props.dialogsPage.activeDialog.id === msg.authorId })
+    const messagesView = dialogsPage.messages
+        .filter(msg => { return dialogsPage.activeDialog.id === msg.authorId })
         .map(msg => {
             return <Message key={msg.id} text={msg.text} />
         });
@@ -39,9 +46,9 @@ const Dialogs = (props: DialogsPropsType) => {
                     {messagesView}
                 </div>
                 <NewMessageInput
-                    value={props.dialogsPage.newMessageText}
-                    addNewMessage={props.addNewMessage}
-                    onNewMessageTextChange={props.updateNewMessageText}
+                    value={dialogsPage.newMessageText}
+                    addNewMessage={addNewMessage}
+                    onNewMessageTextChange={updateNewMessageText}
                 />
             </div>
         </div>

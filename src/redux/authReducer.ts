@@ -109,7 +109,6 @@ export const setAuthError = (authError: string) => {
 }
 
 export const getAuthorizationStatus = () => (dispatch: Dispatch) => {
-    console.log('calling getAuthorizationStatus')
     return authAPI.isAuthorized().then(data => {
         if (data.resultCode === 0) {
             dispatch(setUserData(data.data))
@@ -117,7 +116,6 @@ export const getAuthorizationStatus = () => (dispatch: Dispatch) => {
         } else {
             dispatch(setAuthStatus(false))
         }
-
     })
 }
 
